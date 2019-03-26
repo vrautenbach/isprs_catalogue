@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../Firebase';
@@ -38,6 +39,7 @@ class Show extends Component {
 
 	render() {
 		return (
+			// eslint-disable-next-line react/jsx-filename-extension
 			<div class="container">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -50,14 +52,36 @@ class Show extends Component {
 						<dl>
 							<dt>Description:</dt>
 							<dd>{this.state.resource.description}</dd>
-							<dt>Duration:</dt>
+							<dt>Date:</dt>
+							<dd>{this.state.resource.date}</dd>
+							<dt>Language:</dt>
+							<dd>{this.state.resource.lang}</dd>
+							<dt>Authors:</dt>
+							<dd>{this.state.resource.author}</dd>
+							<dt>Keywords:</dt>
+							<dd>{this.state.resource.keywords}</dd>
+							<dt>Semantic density:</dt>
+							<dd>{this.state.resource.semantic_density}</dd>
+							<dt>Duration (in hours):</dt>
 							<dd>{this.state.resource.duration}</dd>
-							<dt>End user:</dt>
+							<dt>Learning resource type:</dt>
+							<dd>{this.state.resource.resource_type}</dd>
+							<dt>Interactivity type:</dt>
+							<dd>{this.state.resource.interactivity_type}</dd>
+							<dt>Interactivity level:</dt>
+							<dd>{this.state.resource.interactivity_level}</dd>
+							<dt>Context:</dt>
+							<dd>{this.state.resource.context}</dd>
+							<dt>Intended end user:</dt>
 							<dd>{this.state.resource.end_user}</dd>
+							<dt>Difficulty level:</dt>
+							<dd>{this.state.resource.difficulty}</dd>
 							<dt>Copyright:</dt>
 							<dd>{this.state.resource.copyright}</dd>
-							<dt>URL:</dt>
-							<dd>{this.state.resource.url}</dd>
+							<dt>Cost:</dt>
+							<dd>{this.state.resource.cost}</dd>
+							<dt>Link to resource:</dt>
+							<dd><a href={this.state.resource.url} target="_blank">{this.state.resource.url}</a></dd>
 						</dl>
 						<Link to={`/edit/${this.state.key}`} class="btn btn-success">Edit</Link>&nbsp;
 						<button onClick={this.delete.bind(this, this.state.key)} class="btn btn-danger">Delete</button>
