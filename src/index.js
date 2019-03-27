@@ -1,3 +1,6 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -11,14 +14,15 @@ import Show from './components/Show';
 
 ReactDOM.render(
   <Router>
-      <div>
-        <Route exact path='/' component={App} />
-        <Route path='/edit/:id' component={Edit} />
-        <Route path='/create' component={Create} />
-        <Route path='/show/:id' component={Show} />
-      </div>
+    <div>
+      <Route exact path="/" component={App} />
+      <Route path="/edit/:id" component={Edit} />
+      <Route path="/create" component={Create} />
+      <Route path="/show/:id" component={Show} />
+    </div>
   </Router>,
-  document.getElementById('root')
+  // eslint-disable-next-line no-undef
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
