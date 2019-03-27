@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
-import firebase from './Firebase';
+import '../App.css';
+import firebase from '../Firebase';
 
-class App extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.ref = firebase.firestore().collection('resources');
     this.unsubscribe = null;
     this.state = {
-      resources: [],
-      search: ''
+      resources: []
     };
   }
 
-  onChange = (e) => {
-    const state = this.state
-    state[e.target.name] = e.target.value;
-    this.setState(state);
-  }
-
   onCollectionUpdate = (querySnapshot) => {
-    const resources = [];
+    /*const resources = [];
     querySnapshot.forEach((doc) => {
       const { title, description, date, author, lang } = doc.data();
       resources.push({
@@ -36,7 +29,8 @@ class App extends Component {
     });
     this.setState({
       resources
-   });
+   });*/
+   console.log(this.props.match.params.id);
   }
 
   componentDidMount() {
@@ -45,7 +39,12 @@ class App extends Component {
 
   render() {
     return (
-      <div class="container">
+        <div >
+            <h3 >
+              RESOURCE LIST
+            </h3>
+          </div>
+      /*<div class="container">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
@@ -55,14 +54,9 @@ class App extends Component {
           <div class="panel-body">
             <h4>
               <Link to="/create" className="btn btn-primary">Add Resource</Link>
+              &emsp;
+              <Link to="/create" className="btn btn-primary">Search</Link>
             </h4>
-            <div class="input-group">
-              <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for resources based on any keywords" />
-              <span class="input-group-addon"> 
-                <Link to={`/search/${this.state.search}`} className="btn btn-primary">Search</Link> 
-              </span>
-            </div>
-            <br></br>
             <table className="table table-stripe">
               <thead>
                 <tr>
@@ -75,7 +69,7 @@ class App extends Component {
               </thead>
               <tbody>
                 {this.state.resources.map(resource =>{
-                  // console.log(resource)
+                  console.log(resource)
                 return(  
                 <>
                   <tr>
@@ -91,9 +85,9 @@ class App extends Component {
             </table>
           </div>
         </div>
-      </div>
+      </div>*/
     );
   }
 }
 
-export default App;
+export default Search;
