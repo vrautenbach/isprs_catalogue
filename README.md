@@ -1,3 +1,8 @@
+The catalogue is based of React.js Firebase Tutorial: Building Firestore CRUD Web Application by Didin J. [https://www.djamware.com/post/5bc50ea680aca7466989441d/reactjs-firebase-tutorial-building-firestore-crud-web-application]
+
+
+// to be updated
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
