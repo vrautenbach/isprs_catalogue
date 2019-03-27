@@ -35,10 +35,22 @@ class Edit extends Component {
         this.setState({
           key: doc.id,
           title: resource.title,
+          title: resource.title, 
           description: resource.description,
-          duration: resource.duraction,
+          date: resource.date,
+          lang: resource.lang,
+          author: resource.author,
+          keywords: resource.keywords,
+          semantic_density: resource.semantic_density,
+          duration: resource.duration,
+          resource_type: resource.resource_type,
+          interactivity_type: resource.interactivity_type,
+          interactivity_level: resource.interactivity_level,
+          context: resource.context,
           end_user: resource.end_user,
+          difficulty: resource.difficulty,
           copyright: resource.copyright,
+          cost: resource.cost,
           url: resource.url
         });
       } else {
@@ -111,11 +123,11 @@ class Edit extends Component {
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              EDIT resource
+              Edit resource
             </h3>
           </div>
           <div class="panel-body">
-            <h4><Link to={`/show/${this.state.key}`} class="btn btn-primary">resource List</Link></h4>
+            <h4><Link to={`/show/${this.state.key}`} class="btn btn-primary">Return to Resource</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="title">Title:</label>

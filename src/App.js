@@ -44,6 +44,16 @@ class App extends Component {
   }
 
   render() {
+    let _resources = this.state.resources;
+    let _search = this.state.search.trim().toLowerCase();
+
+    if (_search.length > 0) {
+      _resources = _resources.filter(function(results) 
+      {
+        return results.keywords.toLowerCase().match(_search);
+      });
+    }
+    
     return (
       <div class="container">
         <div class="panel panel-default">
@@ -56,11 +66,9 @@ class App extends Component {
             <h4>
               <Link to="/create" className="btn btn-primary">Add Resource</Link>
             </h4>
+            <br></br>
             <div class="input-group">
-              <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for resources based on any keywords" />
-              <span class="input-group-addon"> 
-                <Link to={`/search/${this.state.search}`} className="btn btn-primary">Search</Link> 
-              </span>
+              <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for resources based on the keywords" />
             </div>
             <br></br>
             <table className="table table-stripe">
@@ -74,7 +82,7 @@ class App extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.resources.map(resource =>{
+                {_resources.map(resource =>{
                   // console.log(resource)
                 return(  
                 <>
