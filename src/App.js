@@ -23,7 +23,7 @@ class App extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const resources = [];
     querySnapshot.forEach((doc) => {
-      const { title, description, date, author, lang } = doc.data();
+      const { title, description, date, author, keywords } = doc.data();
       resources.push({
         key: doc.id,
         doc, // DocumentSnapshot
@@ -31,7 +31,7 @@ class App extends Component {
         description, 
         date, 
         author, 
-        lang,
+        keywords,
       });
     });
     this.setState({
@@ -70,7 +70,7 @@ class App extends Component {
                   <th>Description</th>
                   <th>Date</th>
                   <th>Authors</th>
-                  <th>Language</th>
+                  <th>Keywords</th>
                 </tr>
               </thead>
               <tbody>
@@ -83,7 +83,7 @@ class App extends Component {
                     <td>{resource.description}</td>
                     <td>{resource.date}</td>
                     <td>{resource.author}</td>
-                    <td>{resource.lang}</td>
+                    <td>{resource.keywords}</td>
                   </tr>
                   </>
                 )})}
