@@ -55,11 +55,15 @@ class App extends Component {
   //Checkbox code
   //state = { checked: false }
 
-/*   handleCheckboxChange = event => {
+  handleCheckboxChange = event => {
     this.setState({ checked: event.target.checked })
+
+    this.state.resources = this.state.resources.filter(function(results) {
+        return results.resource_type.toLowerCase().match("exercise");
+    });
   }
 
-  handleCheckboxChangeExercise = event => {
+/*   handleCheckboxChangeExercise = event => {
     this.setState({ checked: event.target.checked })
     this.state.checked = true;
     this.setState(this.state);
@@ -86,12 +90,6 @@ class App extends Component {
       });
     }
 
-    if (this.state.checked) {
-        _resources = _resources.filter(function(results) {
-            return results.resource_type.toLowerCase().match(_search);
-        });
-    }
-
     return (
         <div className="container">
             <h1>Advance search</h1> <br/> <br/>
@@ -111,7 +109,7 @@ class App extends Component {
                         <label>
                             <Checkbox
                                 checked={this.state.checked}
-                                onChange={this.onChange}
+                                onChange={this.handleCheckboxChange}
                             />
                             <span style={{ marginLeft: 8 }}>exercise</span>
                         </label>
