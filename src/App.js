@@ -51,7 +51,16 @@ class App extends Component {
     if (_search.length > 0) {
       _resources = _resources.filter(function(results) 
       {
-        return results.keywords.toLowerCase().match(_search);
+        if (results.description.toLowerCase().match(_search)) {
+            return results.description.toLowerCase().match(_search);
+        }
+        else if (results.title.toLowerCase().match(_search)) {
+            return results.title.toLowerCase().match(_search);
+        }
+        else if (results.keywords.toLowerCase().match(_search)) {
+            return results.keywords.toLowerCase().match(_search);
+        }
+        else return ;
       });
     }
     
@@ -71,7 +80,7 @@ class App extends Component {
             </h4>
             <br></br>
             <div class="input-group">
-              <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for resources based on the keywords" />
+              <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Quick search" />
             </div>
             <br></br>
             <table className="table table-stripe">
@@ -102,6 +111,8 @@ class App extends Component {
             </table>
           </div>
         </div>
+        <br />
+        <br />
       </div>
     );
   }

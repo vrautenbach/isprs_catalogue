@@ -241,7 +241,7 @@ class Edit extends Component {
               </div>
               <div class="form-group">
                 <label for="copyright">Copyright:</label>
-                <select class="form-control" name="copyright" value={this.state.end_user} onChange={this.onChange} placeholder="Copyright">
+                <select class="form-control" name="copyright" value={this.state.copyright} onChange={this.onChange} placeholder="Copyright">
                   <option value="no">no</option>
                   <option value="yes">yes</option>
                 </select>
@@ -258,6 +258,8 @@ class Edit extends Component {
             </form>
           </div>
         </div>
+        <br />
+        <br />
       </div>
     );
   }

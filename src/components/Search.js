@@ -94,7 +94,7 @@ class App extends Component {
 
     return (
         <div className="container">
-            <h1>Advance search</h1> <br/> <br/>
+            <Link to="/"><h1>Advance search</h1></Link> <br/> <br/>
             <div className="flex-row">
                 <div className="flex-panel">
                     <h5>FILTER</h5> <br/>
@@ -170,6 +170,8 @@ class App extends Component {
                     </div>
                 </div>
             </div>
+            <br />
+            <br />
         </div>
     );
   }
