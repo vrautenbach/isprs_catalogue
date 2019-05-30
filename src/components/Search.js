@@ -55,7 +55,7 @@ class App extends Component {
   //Checkbox code
   //state = { checked: false }
 
-  handleCheckboxChange = event => {
+  handleCheckboxChangeExercise = event => {
     this.setState({ checked: event.target.checked })
 
     this.state.resources = this.state.resources.filter(function(results) {
@@ -63,12 +63,14 @@ class App extends Component {
     });
   }
 
-/*   handleCheckboxChangeExercise = event => {
+  handleCheckboxChangeNT = event => {
     this.setState({ checked: event.target.checked })
-    this.state.checked = true;
-    this.setState(this.state);
+
+    this.state.resources = this.state.resources.filter(function(results) {
+        return results.resource_type.toLowerCase().match("narrative text");
+    });
   }
-   */
+
 
   render() {
     let _resources = this.state.resources;
@@ -109,9 +111,17 @@ class App extends Component {
                         <label>
                             <Checkbox
                                 checked={this.state.checked}
-                                onChange={this.handleCheckboxChange}
+                                onChange={this.handleCheckboxChangeExercise}
                             />
                             <span style={{ marginLeft: 8 }}>exercise</span>
+                        </label>
+                        <br/>
+                        <label>
+                            <Checkbox
+                                checked={this.state.checked}
+                                onChange={this.handleCheckboxChangeNT}
+                            />
+                            <span style={{ marginLeft: 8 }}>narrative text</span>
                         </label>
 
                     </div>
