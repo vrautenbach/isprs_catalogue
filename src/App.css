@@ -31,3 +31,41 @@
     transform: rotate(360deg);
   }
 }
+
+/* Grid
+=============== */
+.flex-small,
+.flex-large {
+  padding-left: 50px;;
+  padding-right: 1rem; 
+  padding-top: 60px; }
+
+.flex-row {
+  margin-left: -1rem;
+  margin-right: -1rem; }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.flex-small,
+.flex-large {
+  flex-basis: 80%;
+  margin-bottom: 1rem; }
+
+.flex-panel{
+  flex-basis: 20%;
+  margin-bottom: 1rem; }
+
+/* Small screen breakpoint */
+@media (min-width: 600px) {
+  .flex-small {
+    flex: 1 1 0;
+    margin-bottom: 0; } }
+
+/* Large screen breakpoint */
+@media (min-width: 1000px) {
+  .flex-large {
+    flex: 1 1 0;
+    margin-bottom: 0; } }

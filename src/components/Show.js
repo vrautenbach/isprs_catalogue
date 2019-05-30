@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../Firebase';
+import '../App.css';
+import logo from '../animated_logo0_small.gif';
 
 class Show extends Component {
   constructor(props) {
@@ -46,12 +48,20 @@ class Show extends Component {
     // eslint-disable-next-line react/jsx-filename-extension
       <div className="container">
         <div className="panel panel-default">
-          <div className="panel-heading">
-            <h4><Link to="/">Resource List</Link></h4>
-            <h3 className="panel-title">
-            {this.state.resource.title}
-            </h3>
+          
+          <div class="panel-heading">
+            <div className="flex-row">
+              <div className="flex-panel">
+                <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
+              </div>
+              <div className="flex-large">
+                <h3 class="panel-title">
+                  CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES <br/><br/>
+                </h3>
+              </div>
+            </div>
           </div>
+
           <div className="panel-body">
             <dl>
             <dt>Description:</dt>

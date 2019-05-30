@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
+import '../App.css';
+import logo from '../animated_logo0_small.gif';
 
 class Create extends Component {
 
@@ -89,13 +91,22 @@ class Create extends Component {
     return (
       <div class="container">
         <div class="panel panel-default">
+          
           <div class="panel-heading">
-            <h3 class="panel-title">
-              ADD RESOURCE
-            </h3>
+            <div className="flex-row">
+              <div className="flex-panel">
+                <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
+              </div>
+              <div className="flex-large">
+                <h3 class="panel-title">
+                  CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES <br/><br/>
+                </h3>
+              </div>
+            </div>
           </div>
+
           <div class="panel-body">
-            <h4><Link to="/" class="btn btn-primary">Resource List</Link></h4>
+            <h4><Link to="/" class="btn btn-primary">Home</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="title">Title:</label>

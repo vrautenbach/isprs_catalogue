@@ -5,6 +5,8 @@ import './Search.css';
 import firebase from '../Firebase';
 import { render } from 'react-dom'
 import Checkbox from './Checkbox'
+import '../App.css';
+import logo from '../animated_logo0_small.gif';
 
 
 class App extends Component {
@@ -94,16 +96,33 @@ class App extends Component {
 
     return (
         <div className="container">
-            <Link to="/"><h1>Advance search</h1></Link> <br/> <br/>
+            <div class="panel-heading">
+                <div className="flex-row">
+                    <div className="flex-panel">
+                        <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
+                    </div>
+                    <div className="flex-large">
+                        <h3 class="panel-title">
+                        CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES <br/><br/>
+                        </h3>
+                    </div>
+                </div>
+                <div> 
+                    <br/><br/>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search in title, description and keywords" />
+                    </div>
+                </div> 
+            </div>
             <div className="flex-row">
                 <div className="flex-panel">
-                    <h5>FILTER</h5> <br/>
-                    <div> 
+                    <br/> <br/>
+                   {/*  <div> 
                         <h6>Search:</h6>
                         <div class="input-group">
                             <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search in title, dexcription and keywords" />
                         </div>
-                    </div> 
+                    </div>  */}
                     <br/>
                     <div> 
                         <h6>Learning resource type:</h6>
@@ -128,11 +147,6 @@ class App extends Component {
                 </div>
                 <div className="flex-large">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                            RESOURCES <br/>
-                            </h3>
-                        </div>
                         <div class="panel-body">
                             <table className="table table-stripe">
                             <thead>

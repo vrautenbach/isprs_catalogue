@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 import firebase from './Firebase';
+import logo from './animated_logo0_small.gif';
 
 class App extends Component {
   constructor(props) {
@@ -68,11 +69,20 @@ class App extends Component {
     return (
       <div class="container">
         <div class="panel panel-default">
+          
           <div class="panel-heading">
-            <h3 class="panel-title">
-              RESOURCE LIST <br/><br/>
-            </h3>
+            <div className="flex-row">
+              <div className="flex-panel">
+                <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
+              </div>
+              <div className="flex-large">
+                <h3 class="panel-title">
+                  CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES <br/><br/>
+                </h3>
+              </div>
+            </div>
           </div>
+
           <div class="panel-body">
             <h4>
               <Link to="/create" className="btn btn-primary">Add Resource</Link> &nbsp; &nbsp; &nbsp; &nbsp;
