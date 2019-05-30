@@ -47,6 +47,7 @@ class App extends Component {
     let _resources = this.state.resources;
     let _search = this.state.search.trim().toLowerCase();
 
+    //Search for keywords 
     if (_search.length > 0) {
       _resources = _resources.filter(function(results) 
       {
@@ -54,17 +55,19 @@ class App extends Component {
       });
     }
     
+    //Build the list
     return (
       <div class="container">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              RESOURCE LIST
+              RESOURCE LIST <br/><br/>
             </h3>
           </div>
           <div class="panel-body">
             <h4>
-              <Link to="/create" className="btn btn-primary">Add Resource</Link>
+              <Link to="/create" className="btn btn-primary">Add Resource</Link> &nbsp; &nbsp; &nbsp; &nbsp;
+              <Link to="/search" className="btn btn-primary">Advance search</Link>
             </h4>
             <br></br>
             <div class="input-group">
