@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import './Search.css';
-import firebase from '../Firebase';
+import firebase, { auth, provider } from '../Firebase';
 //import { render } from 'react-dom'
 import Checkbox from './Checkbox'
 import '../App.css';
@@ -17,8 +17,13 @@ class App extends Component {
     this.state = {
       resources: [],
       search: '',
-      checked: false
-    }; 
+      checked: false,
+      user: null,
+    };
+
+    // FireStore auth
+    this.login = this.login.bind(this); 
+    this.logout = this.logout.bind(this);
   }
 
 
@@ -51,7 +56,32 @@ class App extends Component {
   }
 
   componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+          this.setState({ user });
+        } 
+    });
+      
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
+  }
+
+  login() {
+    auth.signInWithPopup(provider) 
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+      });
   }
 
   //Checkbox code
@@ -97,6 +127,11 @@ class App extends Component {
     return (
         <div className="container">
             <div class="panel-heading">
+                {this.state.user ?
+                    <button className="btn btn-default btn-xs" onClick={this.logout}>Logout</button>              
+                    :
+                    <button className="btn btn-default btn-xs" onClick={this.login}>Log In</button>              
+                }
                 <div className="flex-row">
                     <div className="flex-panel">
                         <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>

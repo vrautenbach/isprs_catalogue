@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import ReactDOM from 'react-dom';
-import firebase from '../Firebase';
+import firebase, { auth, provider } from '../Firebase';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import logo from '../animated_logo0_small.gif';
@@ -30,11 +30,22 @@ class Create extends Component {
       copyright: '',
       cost: '', 
       url: '',
-      currdate: ''
+      currdate: '',
+      user: null
     };
+
+    //FireStore auth
+    this.login = this.login.bind(this); 
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } 
+    });
+    
     var that = this;
     var ddate = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
@@ -49,6 +60,25 @@ class Create extends Component {
     const state = this.state
     state[e.target.name] = e.target.value;
     this.setState(state);
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
+  }
+
+  login() {
+    auth.signInWithPopup(provider) 
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+      });
   }
 
   onSubmit = (e) => {
@@ -107,7 +137,11 @@ class Create extends Component {
     return (
       <div class="container">
         <div class="panel panel-default">
-          
+          {this.state.user ?
+            <button className="btn btn-default btn-xs" onClick={this.logout}>Logout</button>              
+            :
+            <button className="btn btn-default btn-xs" onClick={this.login}>Log In</button>              
+          } 
           <div class="panel-heading">
             <div className="flex-row">
               <div className="flex-panel">
@@ -288,7 +322,11 @@ class Create extends Component {
                 <label for="url">URL:</label>
                 <input type="text" class="form-control" name="url" value={url} onChange={this.onChange} placeholder="Link to the resource" />
               </div>
-              <button type="submit" class="btn btn-success">Submit</button>
+              {this.state.user ?
+                <button type="submit" class="btn btn-success">Submit</button>               
+                  :
+                <button className="btn btn-default" onClick={this.login}>Please login to submit</button>              
+              } 
             </form>
           </div>
         </div>

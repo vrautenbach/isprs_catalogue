@@ -84,3 +84,14 @@ th, td {
 form label {
   font-weight : bold;
 }
+
+.btn-primary {
+  float : right;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-default {
+  float : right;
+}

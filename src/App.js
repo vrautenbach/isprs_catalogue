@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
-import firebase from './Firebase';
+import firebase, { auth, provider } from './Firebase';
 import logo from './animated_logo0_small.gif';
 
 class App extends Component {
@@ -11,14 +11,38 @@ class App extends Component {
     this.unsubscribe = null;
     this.state = {
       resources: [],
-      search: ''
+      search: '',
+      user: null
     };
+    
+    //FireStore auth
+    this.login = this.login.bind(this); 
+    this.logout = this.logout.bind(this);
   }
 
   onChange = (e) => {
     const state = this.state
     state[e.target.name] = e.target.value;
     this.setState(state);
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
+  }
+
+  login() {
+    auth.signInWithPopup(provider) 
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+      });
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -41,6 +65,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } 
+    });
+    
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
 
@@ -69,7 +99,11 @@ class App extends Component {
     return (
       <div class="container">
         <div class="panel panel-default">
-          
+          {this.state.user ?
+            <button className="btn btn-default btn-xs" onClick={this.logout}>Logout</button>              
+            :
+            <button className="btn btn-default btn-xs" onClick={this.login}>Log In</button>              
+          } 
           <div class="panel-heading">
             <div className="flex-row">
               <div className="flex-panel">
@@ -85,8 +119,12 @@ class App extends Component {
 
           <div class="panel-body">
             <h4>
-              <Link to="/create" className="btn btn-primary">Add Resource</Link> &nbsp; &nbsp; &nbsp; &nbsp;
-              <Link to="/search" className="btn btn-primary">Advance search</Link>
+              {this.state.user ?
+                <Link to="/create" className="btn btn-primary" >Add Resource</Link>            
+                  :
+                <button className="btn btn-primary" onClick={this.login}>Log In</button>              
+              } 
+              <Link to="/search" className="btn btn-primary" >Advance search</Link>
             </h4>
             <br></br>
             <div class="input-group">

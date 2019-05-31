@@ -1,10 +1,11 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-indent */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import firebase from '../Firebase';
+import firebase, { auth, provider } from '../Firebase';
 import '../App.css';
 import logo from '../animated_logo0_small.gif';
 
@@ -14,10 +15,21 @@ class Show extends Component {
     this.state = {
       resource: {},
       key: '',
+      user: null,
     };
+
+    // FireStore auth
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
+
     const ref = firebase.firestore().collection('resources').doc(this.props.match.params.id);
     ref.get().then((doc) => {
       if (doc.exists) {
@@ -30,6 +42,26 @@ class Show extends Component {
         console.log('No such document!');
       }
     });
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null,
+        });
+      });
+  }
+
+  login() {
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        // eslint-disable-next-line prefer-destructuring
+        const user = result.user;
+        this.setState({
+          user,
+        });
+      });
   }
 
   delete(id) {
@@ -48,7 +80,11 @@ class Show extends Component {
     // eslint-disable-next-line react/jsx-filename-extension
       <div className="container">
         <div className="panel panel-default">
-
+          {this.state.user ?
+            <button className="btn btn-default btn-xs" onClick={this.logout}>Logout</button>
+            :
+            <button className="btn btn-default btn-xs" onClick={this.login}>Log In</button>
+          }
           <div className="panel-heading">
             <div className="flex-row">
               <div className="flex-panel">
@@ -84,6 +120,10 @@ class Show extends Component {
               <tr>
                 <th>Authors:</th>
                 <td>{this.state.resource.author}</td>
+              </tr>
+              <tr>
+                <th>Date added:</th>
+                <td>{this.state.resource.currdate}</td>
               </tr>
               <tr>
                 <th>Keywords:</th>
@@ -138,7 +178,7 @@ class Show extends Component {
 
             <Link to={`/edit/${this.state.key}`} class="btn btn-success">Edit</Link>
             &nbsp;
-            <button type="button" onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button>
+            {/* <button type="button" onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button> */}
           </div>
         </div>
         <br />
