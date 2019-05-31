@@ -29,9 +29,22 @@ class Create extends Component {
       difficulty: '', 
       copyright: '',
       cost: '', 
-      url: ''
+      url: '',
+      currdate: ''
     };
   }
+
+  componentDidMount() {
+    var that = this;
+    var ddate = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    that.setState({
+      //Setting the value of the date time
+      currdate: ddate + '/' + month + '/' + year,
+    });
+  }
+
   onChange = (e) => {
     const state = this.state
     state[e.target.name] = e.target.value;
@@ -41,7 +54,7 @@ class Create extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, date, lang, author, keywords, semantic_density, duration, resource_type, interactivity_type, interactivity_level, context, end_user, difficulty, copyright, cost, url } = this.state;
+    const { title, description, date, lang, author, keywords, semantic_density, duration, resource_type, interactivity_type, interactivity_level, context, end_user, difficulty, copyright, cost, url, currdate } = this.state;
 
     this.ref.add({
       title, 
@@ -60,7 +73,8 @@ class Create extends Component {
       difficulty, 
       copyright,
       cost, 
-      url
+      url, 
+      currdate
     }).then((docRef) => {
       this.setState({
         title: '', 
