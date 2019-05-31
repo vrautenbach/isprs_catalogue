@@ -69,3 +69,18 @@
   .flex-large {
     flex: 1 1 0;
     margin-bottom: 0; } }
+
+/* Table
+=============== */
+/*table, th, td {
+  border: 1px solid #e0e0e0;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+}*/
+
+form label {
+  font-weight : bold;
+}

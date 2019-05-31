@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import logo from '../animated_logo0_small.gif';
+import help from './help.png';
+import ReactTooltip from 'react-tooltip'
 
 class Create extends Component {
 
@@ -110,15 +112,15 @@ class Create extends Component {
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" class="form-control" name="title" value={title} onChange={this.onChange} placeholder="Title" />
+                <input type="text" class="form-control" name="title" value={title} onChange={this.onChange} placeholder="Title given to the resource" />
               </div>
               <div class="form-group">
                 <label for="description">Description:</label>
-                <textArea class="form-control" name="description" onChange={this.onChange} placeholder="Description" cols="80" rows="3">{description}</textArea>
+                <textArea class="form-control" name="description" onChange={this.onChange} placeholder="Textual description of the content of the resource" cols="80" rows="3">{description}</textArea>
               </div>
               <div class="form-group">
                 <label for="date">Date:</label>
-                <input type="text" class="form-control" name="date" value={date} onChange={this.onChange} placeholder="Year the resources was created" />
+                <input type="text" class="form-control" name="date" value={date} onChange={this.onChange} placeholder="Year the resource was created" />
               </div>
               <div class="form-group">
                 <label for="lang">Language:</label>
@@ -133,14 +135,18 @@ class Create extends Component {
               </div>
               <div class="form-group">
                 <label for="author">Authors:</label>
-                <input type="text" class="form-control" name="author" value={author} onChange={this.onChange} placeholder="" />
+                <input type="text" class="form-control" name="author" value={author} onChange={this.onChange} placeholder="Author(s) of the resource" />
               </div>
               <div class="form-group">
                 <label for="keywords">Keywords:</label>
-                <input type="text" class="form-control" name="keywords" value={keywords} onChange={this.onChange} placeholder="Separate keywords with semicolon" />
+                <input type="text" class="form-control" name="keywords" value={keywords} onChange={this.onChange} placeholder="A keyword(s) or phrase(s) describing the topic of the resource" />
               </div>
               <div class="form-group">
-                <label for="semantic_density">Semantic density:</label>
+                <label for="semantic_density">Semantic density:</label>&nbsp;&nbsp;
+                <a data-tip data-for="semantic_density-tooltip"><img src={help} alt="Help" /></a>
+                <ReactTooltip id="semantic_density-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                  <span>The degree of conciseness (cutting out of unnecessary words while conveying an idea) of a learning object. This may be estimated in terms of its size, length of reading or in the case of media – the duration.</span>
+                </ReactTooltip>
                 <select class="form-control" name="semantic_density" value={semantic_density} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
                   <option value="very low">very low</option>
@@ -152,10 +158,14 @@ class Create extends Component {
               </div>
               <div class="form-group">
                 <label for="duration">Duration:</label>
-                <input type="text" class="form-control" name="duration" value={duration} onChange={this.onChange} placeholder="Duration in hours" />
+                <input type="text" class="form-control" name="duration" value={duration} onChange={this.onChange} placeholder="The time it takes to complete the reseource at the intended speed" />
               </div>
               <div class="form-group">
-                <label for="resource_type">Resource type:</label>
+                <label for="resource_type">Resource type:</label>&nbsp;&nbsp;
+                <a data-tip data-for="resource_type-tooltip"><img src={help} alt="Help" /></a>
+                <ReactTooltip id="resource_type-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                  <span>Specific kind of learning object. Please select the most dominant kind.</span>
+                </ReactTooltip>
                 <select class="form-control" name="resource_type" value={resource_type} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
                   <option value="exercise">exercise</option>
@@ -176,7 +186,13 @@ class Create extends Component {
                 </select>
               </div>
               <div class="form-group">
-                <label for="interactivity_type">Interactivity type:</label>
+                <label for="interactivity_type">Interactivity type:</label>&nbsp;&nbsp;
+                <a data-tip data-for="interactivity_type-tooltip"><img src={help} alt="Help" /></a>
+                <ReactTooltip id="interactivity_type-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                  <span><p>“Active” learning (e.g. learning by doing) is supported by the content that directly induces productive action by a learner. The active learning object prompts the learner for meaningful input or some other kind of productive action or decision. </p>
+                  <p>“Expositive” learning (e.g. passive learning) occurs when the learner’s job mainly consists of absorbing the content exposed to them, generally through text, images or sound. </p>
+                  <p>“Mixed” learning is when a learning object blends the active and expositive interactivity types. </p></span>
+                </ReactTooltip>
                 <select class="form-control" name="interactivity_type" value={interactivity_type} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
                   <option value="active">active</option>
@@ -185,7 +201,11 @@ class Create extends Component {
                 </select>
               </div>
               <div class="form-group">
-                <label for="interactivity_level">Interactivity level:</label>
+                <label for="interactivity_level">Interactivity level:</label>&nbsp;&nbsp;
+                <a data-tip data-for="interactivity_level-tooltip"><img src={help} alt="Help" /></a>
+                <ReactTooltip id="interactivity_level-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                  <span>This refers to the degree to which the learner can influence the aspect or behavior of the resource.</span>
+                </ReactTooltip>
                 <select class="form-control" name="interactivity_level" value={interactivity_level} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
                   <option value="very low">very low</option>
@@ -196,7 +216,11 @@ class Create extends Component {
                 </select>
               </div>
               <div class="form-group">
-                <label for="context">Context:</label>
+                <label for="context">Context:</label>&nbsp;&nbsp;
+                <a data-tip data-for="context-tooltip"><img src={help} alt="Help" /></a>
+                <ReactTooltip id="context-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                  <span>The principal or main environment within which the resource is intended to take place.</span>
+                </ReactTooltip>
                 <select class="form-control" name="context" value={context} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
                   <option value="school">school</option>
@@ -206,7 +230,11 @@ class Create extends Component {
                 </select>
               </div>
               <div class="form-group">
-                <label for="end_user">End user:</label>
+                <label for="end_user">End user:</label>&nbsp;&nbsp;
+                <a data-tip data-for="end_user-tooltip"><img src={help} alt="Help" /></a>
+                <ReactTooltip id="end_user-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                  <span>Principal users for which this resource was designed, most dominant first.</span>
+                </ReactTooltip>
                 <select class="form-control" name="end_user" value={end_user} onChange={this.onChange} placeholder="Intended end user">
                   <option disabled selected value=""> -- select an option -- </option>
                   <option value="teacher">teacher</option>
@@ -216,7 +244,11 @@ class Create extends Component {
                 </select>
               </div>
               <div class="form-group">
-                <label for="difficulty">Difficulty:</label>
+                <label for="difficulty">Difficulty:</label>&nbsp;&nbsp;
+                <a data-tip data-for="difficulty-tooltip"><img src={help} alt="Help" /></a>
+                <ReactTooltip id="difficulty-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                  <span>How hard it is to work with or through the resource for the typical intended target audience.</span>
+                </ReactTooltip>
                 <select class="form-control" name="difficulty" value={difficulty} onChange={this.onChange} placeholder="Intended end user">
                   <option disabled selected value=""> -- select an option -- </option>
                   <option value="very easy">very easy</option>
@@ -228,7 +260,7 @@ class Create extends Component {
               </div>
               <div class="form-group">
                 <label for="copyright">Copyright:</label>
-                <select class="form-control" name="copyright" value={end_user} onChange={this.onChange} placeholder="Copyright">
+                <select class="form-control" name="copyright" value={copyright} onChange={this.onChange} placeholder="Copyright">
                   <option disabled selected value=""> -- select an option -- </option>
                   <option value="no">no</option>
                   <option value="yes">yes</option>
@@ -236,7 +268,7 @@ class Create extends Component {
               </div>
               <div class="form-group">
                 <label for="cost">Cost:</label>
-                <input type="text" class="form-control" name="cost" value={cost} onChange={this.onChange} placeholder="" />
+                <input type="text" class="form-control" name="cost" value={cost} onChange={this.onChange} placeholder="Is there any cost required to use the resource?" />
               </div>
               <div class="form-group">
                 <label for="url">URL:</label>
@@ -246,6 +278,8 @@ class Create extends Component {
             </form>
           </div>
         </div>
+        <br />
+        <br />
       </div>
     );
   }

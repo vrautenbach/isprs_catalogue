@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import './Search.css';
 import firebase from '../Firebase';
-import { render } from 'react-dom'
+//import { render } from 'react-dom'
 import Checkbox from './Checkbox'
 import '../App.css';
 import logo from '../animated_logo0_small.gif';
@@ -90,7 +90,7 @@ class App extends Component {
         else if (results.keywords.toLowerCase().match(_search)) {
             return results.keywords.toLowerCase().match(_search);
         }
-        else return ;
+        else return null;
       });
     }
 

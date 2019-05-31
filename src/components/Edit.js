@@ -37,7 +37,6 @@ class Edit extends Component {
         this.setState({
           key: doc.id,
           title: resource.title,
-          title: resource.title, 
           description: resource.description,
           date: resource.date,
           lang: resource.lang,

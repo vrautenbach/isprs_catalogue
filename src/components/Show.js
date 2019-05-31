@@ -48,55 +48,94 @@ class Show extends Component {
     // eslint-disable-next-line react/jsx-filename-extension
       <div className="container">
         <div className="panel panel-default">
-          
-          <div class="panel-heading">
+
+          <div className="panel-heading">
             <div className="flex-row">
               <div className="flex-panel">
                 <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
               </div>
               <div className="flex-large">
-                <h3 class="panel-title">
-                  CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES <br/><br/>
+                <h3 className="panel-title">
+                  CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES
+                  <br />
+                  <br />
                 </h3>
               </div>
             </div>
           </div>
 
           <div className="panel-body">
-            <dl>
-            <dt>Description:</dt>
-            <dd>{this.state.resource.description}</dd>
-            <dt>Date:</dt>
-            <dd>{this.state.resource.date}</dd>
-            <dt>Language:</dt>
-            <dd>{this.state.resource.lang}</dd>
-            <dt>Authors:</dt>
-            <dd>{this.state.resource.author}</dd>
-            <dt>Keywords:</dt>
-            <dd>{this.state.resource.keywords}</dd>
-            <dt>Semantic density:</dt>
-            <dd>{this.state.resource.semantic_density}</dd>
-            <dt>Duration (in hours):</dt>
-            <dd>{this.state.resource.duration}</dd>
-            <dt>Learning resource type:</dt>
-            <dd>{this.state.resource.resource_type}</dd>
-            <dt>Interactivity type:</dt>
-            <dd>{this.state.resource.interactivity_type}</dd>
-            <dt>Interactivity level:</dt>
-            <dd>{this.state.resource.interactivity_level}</dd>
-            <dt>Context:</dt>
-            <dd>{this.state.resource.context}</dd>
-            <dt>Intended end user:</dt>
-            <dd>{this.state.resource.end_user}</dd>
-            <dt>Difficulty level:</dt>
-            <dd>{this.state.resource.difficulty}</dd>
-            <dt>Copyright:</dt>
-            <dd>{this.state.resource.copyright}</dd>
-            <dt>Cost:</dt>
-            <dd>{this.state.resource.cost}</dd>
-            <dt>Link to resource:</dt>
-            <dd><a href={this.state.resource.url} rel="noopener noreferrer" target="_blank">{this.state.resource.url}</a></dd>
-            </dl>
+            <br />
+            <h4>{this.state.resource.title}</h4>
+            <br />
+            <table className="table table-stripe">
+              <tr>
+                <th>Description:</th>
+                <td>{this.state.resource.description}</td>
+              </tr>
+              <tr>
+                <th>Date:</th>
+                <td>{this.state.resource.date}</td>
+              </tr>
+              <tr>
+                <th>Language:</th>
+                <td>{this.state.resource.lang}</td>
+              </tr>
+              <tr>
+                <th>Authors:</th>
+                <td>{this.state.resource.author}</td>
+              </tr>
+              <tr>
+                <th>Keywords:</th>
+                <td>{this.state.resource.keywords}</td>
+              </tr>
+              <tr>
+                <th>Semantic density:</th>
+                <td>{this.state.resource.semantic_density}</td>
+              </tr>
+              <tr>
+                <th>Duration (in hours):</th>
+                <td>{this.state.resource.duration}</td>
+              </tr>
+              <tr>
+                <th>Learning resource type:</th>
+                <td>{this.state.resource.resource_type}</td>
+              </tr>
+              <tr>
+                <th>Interactivity type:</th>
+                <td>{this.state.resource.interactivity_type}</td>
+              </tr>
+              <tr>
+                <th>Interactivity level:</th>
+                <td>{this.state.resource.interactivity_level}</td>
+              </tr>
+              <tr>
+                <th>Context:</th>
+                <td>{this.state.resource.context}</td>
+              </tr>
+              <tr>
+                <th>Intended end user:</th>
+                <td>{this.state.resource.end_user}</td>
+              </tr>
+              <tr>
+                <th>Difficulty level:</th>
+                <td>{this.state.resource.difficulty}</td>
+              </tr>
+              <tr>
+                <th>Copyright:</th>
+                <td>{this.state.resource.copyright}</td>
+              </tr>
+              <tr>
+                <th>Cost:</th>
+                <td>{this.state.resource.cost}</td>
+              </tr>
+              <tr>
+                <th>Link to resource:</th>
+                <td><a href={this.state.resource.url} rel="noopener noreferrer" target="_blank">{this.state.resource.url}</a></td>
+              </tr>
+            </table>
+            <br />
+
             <Link to={`/edit/${this.state.key}`} class="btn btn-success">Edit</Link>
             &nbsp;
             <button type="button" onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button>

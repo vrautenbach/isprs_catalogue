@@ -61,7 +61,7 @@ class App extends Component {
         else if (results.keywords.toLowerCase().match(_search)) {
             return results.keywords.toLowerCase().match(_search);
         }
-        else return ;
+        else return null;
       });
     }
     
