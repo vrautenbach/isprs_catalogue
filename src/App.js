@@ -122,7 +122,7 @@ class App extends Component {
               {this.state.user ?
                 <Link to="/create" className="btn btn-primary" >Add Resource</Link>            
                   :
-                <button className="btn btn-primary" onClick={this.login}>Log In</button>              
+                <button className="btn btn-danger" onClick={this.login}>Log In</button>              
               } 
               <Link to="/search" className="btn btn-primary" >Advance search</Link>
             </h4>
@@ -160,7 +160,11 @@ class App extends Component {
           </div>
         </div>
         <br />
-        <br />
+        <div class="footnote">
+          <p>Funded by the 2018 ISPRS Scientific Initiatives. <br />
+          Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a></p>
+        
+        </div>
       </div>
     );
   }

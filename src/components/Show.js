@@ -190,7 +190,11 @@ class Show extends Component {
           </div>
         </div>
         <br />
-        <br />
+        <div class="footnote">
+          <p>Funded by the 2018 ISPRS Scientific Initiatives. <br />
+          Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a></p>
+        
+        </div>
       </div>
     );
   }
