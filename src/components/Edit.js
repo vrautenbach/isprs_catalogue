@@ -26,7 +26,10 @@ class Edit extends Component {
       copyright: '',
       cost: '', 
       url: '',
+      currdate: '',
       user: null,
+      displayName: '',
+      email: '',
     };
 
     // FireStore auth
@@ -37,8 +40,23 @@ class Edit extends Component {
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user });
+        const displayName = user.displayName;
+        const email = user.email;
+        this.setState({
+          user,
+          displayName,
+          email,
+        });
       } 
+    });
+
+    var that = this;
+    var ddate = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    that.setState({
+      //Setting the value of the date time
+      currdate: ddate + '/' + month + '/' + year,
     });
     
     const ref = firebase.firestore().collection('resources').doc(this.props.match.params.id);
@@ -90,8 +108,12 @@ class Edit extends Component {
     auth.signInWithPopup(provider) 
       .then((result) => {
         const user = result.user;
+        const displayName = user.displayName;
+        const email = user.email;
         this.setState({
-          user
+          user,
+          displayName,
+          email,
         });
       });
   }
@@ -99,7 +121,7 @@ class Edit extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, date, lang, author, keywords, semantic_density, duration, resource_type, interactivity_type, interactivity_level, context, end_user, difficulty, copyright, cost, url } = this.state;
+    const { title, description, date, lang, author, keywords, semantic_density, duration, resource_type, interactivity_type, interactivity_level, context, end_user, difficulty, copyright, cost, url, currdate, displayName, email } = this.state;
 
     const updateRef = firebase.firestore().collection('resources').doc(this.state.key);
     updateRef.set({
@@ -119,7 +141,10 @@ class Edit extends Component {
       difficulty, 
       copyright, 
       cost, 
-      url
+      url,
+      currdate,
+      displayName,
+      email
     }).then((docRef) => {
       this.setState({
         key: '',

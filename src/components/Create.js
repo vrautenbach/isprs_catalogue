@@ -31,7 +31,9 @@ class Create extends Component {
       cost: '', 
       url: '',
       currdate: '',
-      user: null
+      user: null,
+      displayName: '',
+      email: '',
     };
 
     //FireStore auth
@@ -42,7 +44,13 @@ class Create extends Component {
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user });
+        const displayName = user.displayName;
+        const email = user.email;
+        this.setState({
+          user,
+          displayName,
+          email,
+        });
       } 
     });
     
@@ -66,7 +74,9 @@ class Create extends Component {
     auth.signOut()
       .then(() => {
         this.setState({
-          user: null
+          user: null,
+          displayName: '',
+          email: '',
         });
       });
   }
@@ -75,8 +85,12 @@ class Create extends Component {
     auth.signInWithPopup(provider) 
       .then((result) => {
         const user = result.user;
+        const displayName = user.displayName;
+        const email = user.email;
         this.setState({
-          user
+          user,
+          displayName,
+          email,
         });
       });
   }
@@ -84,7 +98,7 @@ class Create extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, date, lang, author, keywords, semantic_density, duration, resource_type, interactivity_type, interactivity_level, context, end_user, difficulty, copyright, cost, url, currdate } = this.state;
+    const { title, description, date, lang, author, keywords, semantic_density, duration, resource_type, interactivity_type, interactivity_level, context, end_user, difficulty, copyright, cost, url, currdate, displayName, email } = this.state;
 
     this.ref.add({
       title, 
@@ -104,7 +118,9 @@ class Create extends Component {
       copyright,
       cost, 
       url, 
-      currdate
+      currdate,
+      displayName,
+      email
     }).then((docRef) => {
       this.setState({
         title: '', 
@@ -134,6 +150,10 @@ class Create extends Component {
 
   render() {
     const { title, description, date, lang, author, keywords, semantic_density, duration, resource_type, interactivity_type, interactivity_level, context, end_user, difficulty, copyright, cost, url } = this.state;
+    
+    //var username = {this.state.user.displayName};
+    //console.log(username);
+    
     return (
       <div class="container">
         <div class="panel panel-default">

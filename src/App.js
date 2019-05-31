@@ -143,7 +143,7 @@ class App extends Component {
               </thead>
               <tbody>
                 {_resources.map(resource =>{
-                  // console.log(resource)
+                  //console.log(resource)
                 return(  
                 <>
                   <tr>

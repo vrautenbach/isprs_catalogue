@@ -122,7 +122,15 @@ class Show extends Component {
                 <td>{this.state.resource.author}</td>
               </tr>
               <tr>
-                <th>Date added:</th>
+                <th>Added by (username):</th>
+                <td>{this.state.resource.displayName}</td>
+              </tr>
+              <tr>
+                <th>Added by (email):</th>
+                <td>{this.state.resource.email}</td>
+              </tr>
+              <tr>
+                <th>Date added or updated:</th>
                 <td>{this.state.resource.currdate}</td>
               </tr>
               <tr>
@@ -134,7 +142,7 @@ class Show extends Component {
                 <td>{this.state.resource.semantic_density}</td>
               </tr>
               <tr>
-                <th>Duration (in hours):</th>
+                <th>Duration:</th>
                 <td>{this.state.resource.duration}</td>
               </tr>
               <tr>
