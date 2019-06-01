@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import './Search.css';
 import firebase, { auth, provider } from '../Firebase';
-//import { render } from 'react-dom'
-import Checkbox from './Checkbox'
+import { render } from 'react-dom'
+import Checkbox from "./Check.js";
+//import Checkbox from './Checkbox'
 import '../App.css';
 import logo from '../animated_logo0_small.gif';
 
+
+const OPTIONS = ["diagram", "exam", "exercise", "experiment", "figure", "graph", "index", "lecture", "narrative text", "problem statement", "questionnaire", "self assessment", "simulation", "slide", "table"];
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +22,14 @@ class App extends Component {
       search: '',
       checked: false,
       user: null,
+      checkboxes: OPTIONS.reduce(
+        (options, option) => ({
+          ...options,
+          [option]: false
+        }),
+        {}
+      ),
+      checked:[],
     };
 
     // FireStore auth
@@ -84,29 +95,47 @@ class App extends Component {
       });
   }
 
-  //Checkbox code
-  //state = { checked: false }
+  handleCheckboxChange = changeEvent => {
+    const { name } = changeEvent.target;
 
-  handleCheckboxChangeExercise = event => {
-    this.setState({ checked: event.target.checked })
+    this.setState(prevState => ({
+      checkboxes: {
+        ...prevState.checkboxes,
+        [name]: !prevState.checkboxes[name]
+      }
+    }));
+  };
 
-    this.state.resources = this.state.resources.filter(function(results) {
-        return results.resource_type.toLowerCase().match("exercise");
-    });
-  }
+  handleFormSubmit = formSubmitEvent => {
+    formSubmitEvent.preventDefault();
+    const checked = [];
 
-  handleCheckboxChangeNT = event => {
-    this.setState({ checked: event.target.checked })
+    Object.keys(this.state.checkboxes)
+      .filter(checkbox => this.state.checkboxes[checkbox])
+      .forEach(checkbox => {
+        //console.log(checkbox, "is selected.");
+        checked.push(checkbox);
+      });
+      this.setState({
+        checked
+      });
+  };
 
-    this.state.resources = this.state.resources.filter(function(results) {
-        return results.resource_type.toLowerCase().match("narrative text");
-    });
-  }
+  createCheckbox = option => (
+    <Checkbox
+      label={option}
+      isSelected={this.state.checkboxes[option]}
+      onCheckboxChange={this.handleCheckboxChange}
+      key={option}
+    />
+  );
 
+  createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
   render() {
     let _resources = this.state.resources;
     let _search = this.state.search.trim().toLowerCase();
+    let _checked = this.state.checked;
 
     if (_search.length > 0) {
       _resources = _resources.filter(function(results) 
@@ -121,6 +150,16 @@ class App extends Component {
             return results.keywords.toLowerCase().match(_search);
         }
         else return null;
+      });
+    }
+
+    if (_checked.length > 0) {
+      _resources = _resources.filter(function(results) 
+      {
+        if (_checked.includes(results.resource_type)) {
+          console.log("helo");  
+          return results.resource_type;
+        }
       });
     }
 
@@ -145,40 +184,25 @@ class App extends Component {
                 <div> 
                     <br/><br/>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search in title, description and keywords" />
+                        <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for phrases in the title, description and keywords" />
                     </div>
                 </div> 
             </div>
             <div className="flex-row">
                 <div className="flex-panel">
-                    <br/> <br/>
-                   {/*  <div> 
-                        <h6>Search:</h6>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search in title, dexcription and keywords" />
-                        </div>
-                    </div>  */}
                     <br/>
-                    <div> 
-                        <h6>Learning resource type:</h6>
-
-                        <label>
-                            <Checkbox
-                                checked={this.state.checked}
-                                onChange={this.handleCheckboxChangeExercise}
-                            />
-                            <span style={{ marginLeft: 8 }}>exercise</span>
-                        </label>
-                        <br/>
-                        <label>
-                            <Checkbox
-                                checked={this.state.checked}
-                                onChange={this.handleCheckboxChangeNT}
-                            />
-                            <span style={{ marginLeft: 8 }}>narrative text</span>
-                        </label>
-
-                    </div>
+                        <form onSubmit={this.handleFormSubmit}>
+                          <div className="form-group mt-2">
+                            <button type="submit" className="btn btn-primary btn-sm">
+                              Filter resources
+                            </button>
+                          </div>
+                          <br/> 
+                          <br/>
+                          <br/> 
+                          <h6>Learning resource type:</h6>
+                          {this.createCheckboxes()}
+                        </form>
                 </div>
                 <div className="flex-large">
                     <div class="panel panel-default">

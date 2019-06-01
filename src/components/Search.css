@@ -34,3 +34,18 @@
   .flex-large {
     flex: 1 1 0;
     margin-bottom: 0; } }
+
+.search-form {
+  font-weight: normal;
+  margin-bottom: 2px;
+}
+
+.h6, h6 {
+  font-weight: bold;
+}
+
+/* .btn-primary, .btn-danger {
+  float : left;
+  margin-top: 0px;
+  margin-left: 0px;
+} */
