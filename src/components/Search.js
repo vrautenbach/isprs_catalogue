@@ -8,9 +8,8 @@ import Checkbox from "./Check.js";
 //import Checkbox from './Checkbox'
 import '../App.css';
 import logo from '../animated_logo0_small.gif';
+import config from '../common/config'
 
-
-const OPTIONS = ["diagram", "exam", "exercise", "experiment", "figure", "graph", "index", "lecture", "narrative text", "problem statement", "questionnaire", "self assessment", "simulation", "slide", "table"];
 
 class App extends Component {
   constructor(props) {
@@ -22,14 +21,8 @@ class App extends Component {
       search: '',
       checked: false,
       user: null,
-      checkboxes: OPTIONS.reduce(
-        (options, option) => ({
-          ...options,
-          [option]: false
-        }),
-        {}
-      ),
-      checked:[],
+      contextType:[],
+      resourceType:[],
     };
 
     // FireStore auth
@@ -95,7 +88,7 @@ class App extends Component {
       });
   }
 
-  handleCheckboxChange = changeEvent => {
+  /*handleCheckboxChange = changeEvent => {
     const { name } = changeEvent.target;
 
     this.setState(prevState => ({
@@ -104,9 +97,9 @@ class App extends Component {
         [name]: !prevState.checkboxes[name]
       }
     }));
-  };
+  };*/
 
-  handleFormSubmit = formSubmitEvent => {
+  /*handleFormSubmit = formSubmitEvent => {
     formSubmitEvent.preventDefault();
     const checked = [];
 
@@ -119,7 +112,7 @@ class App extends Component {
       this.setState({
         checked
       });
-  };
+  };*/
 
   createCheckbox = option => (
     <Checkbox
@@ -130,9 +123,37 @@ class App extends Component {
     />
   );
 
-  createCheckboxes = () => OPTIONS.map(this.createCheckbox);
+  clickSelectedResourceType=(changeEvent)=>{
+    const { name } = changeEvent.target;
+    let filterArray = this.state.resourceType;
+    //if in array remove else push
+    if(filterArray.includes(name)){
+      console.log("IN array")
+      filterArray = filterArray.filter(element=>element!== name) 
+    } else{
+      filterArray.push(name)
+    }
+
+    this.setState({ resourceType:filterArray})
+  }
+
+  clickSelectedContextType=(changeEvent)=>{
+    const { name } = changeEvent.target;
+    let filterArray = this.state.contextType;
+    //if in array remove else push
+    if(filterArray.includes(name)){
+      console.log("IN array")
+      filterArray = filterArray.filter(element=>element!== name) 
+    } else{
+      filterArray.push(name)
+    }
+
+    this.setState({ contextType:filterArray})
+  }
+
 
   render() {
+   
     let _resources = this.state.resources;
     let _search = this.state.search.trim().toLowerCase();
     let _checked = this.state.checked;
@@ -153,12 +174,20 @@ class App extends Component {
       });
     }
 
-    if (_checked.length > 0) {
-      _resources = _resources.filter(function(results) 
+    if (this.state.resourceType.length > 0) {
+      _resources = _resources.filter((results)=> 
       {
-        if (_checked.includes(results.resource_type)) {
-          console.log("helo");  
+        if (this.state.resourceType.includes(results.resource_type)) { 
           return results.resource_type;
+        }
+      });
+    }
+
+    if (this.state.contextType.length > 0) {
+      _resources = _resources.filter((results)=> 
+      {
+        if (this.state.contextType.includes(results.context)) { 
+          return results.context;
         }
       });
     }
@@ -166,21 +195,11 @@ class App extends Component {
     return (
         <div className="container">
             <div class="panel-heading">
-                {this.state.user ?
-                    <button className="btn btn-default btn-xs" onClick={this.logout}>Logout</button>              
-                    :
-                    <button className="btn btn-default btn-xs" onClick={this.login}>Log In</button>              
-                }
-                <div className="flex-row">
-                    <div className="flex-panel">
-                        <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
-                    </div>
-                    <div className="flex-large">
-                        <h3 class="panel-title">
-                        CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES <br/><br/>
-                        </h3>
-                    </div>
-                </div>
+              {this.state.user ?
+                <button className="btn btn-primary btn-sm" onClick={this.logout}>Logout</button>              
+                :
+                <button className="btn btn-primary btn-sm" onClick={this.login}>Log In</button>              
+              }
                 <div> 
                     <br/><br/>
                     <div class="input-group">
@@ -190,23 +209,33 @@ class App extends Component {
             </div>
             <div className="flex-row">
                 <div className="flex-panel">
-                    <br/>
-                        <form onSubmit={this.handleFormSubmit}>
-                          <div className="form-group mt-2">
-                            <button type="submit" className="btn btn-primary btn-sm">
-                              Filter resources
-                            </button>
-                          </div>
-                          <br/> 
-                          <br/>
-                          <br/> 
-                          <h6>Learning resource type:</h6>
-                          {this.createCheckboxes()}
-                        </form>
+                  <br/>
+                  <br/> 
+                  <h6>Learning resource type:</h6>
+                      {config.resourceType.map(checkbox=>(              
+                      <Checkbox
+                            label={checkbox}
+                            isSelected={this.state.resourceType.includes(checkbox)}
+                            onCheckboxChange={(e)=> this.clickSelectedResourceType(e)}
+                            key={checkbox}
+                          />)
+                      )}
+                      <br/> 
+                      <h6>Context:</h6>
+                      {config.contextType.map(checkbox=>(              
+                      <Checkbox
+                            label={checkbox}
+                            isSelected={this.state.contextType.includes(checkbox)}
+                            onCheckboxChange={(e)=> this.clickSelectedContextType(e)}
+                            key={checkbox}
+                          />)
+                      )}
                 </div>
                 <div className="flex-large">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" style={{height: '90vh', overflow: 'scroll'}}>
                         <div class="panel-body">
+                          { _resources.length > 0
+                          ?  
                             <table className="table table-stripe">
                             <thead>
                                 <tr>
@@ -239,15 +268,12 @@ class App extends Component {
                                 )})}
                             </tbody>
                             </table>
+                            :
+                            <h5>No resources found.</h5>
+                            }
                         </div>
                     </div>
                 </div>
-            </div>
-            <br />
-            <div class="footnote">
-              <p>Funded by a 2018 <a href="https://www.isprs.org/society/si/default.aspx" rel="noopener noreferrer" target="_blank">ISPRS Scientific Initiatives</a> grant awarded to the ISPRS WG IV/9, ISPRS WG IV/6, ICA Commission on SDIs and Standards, and the Mongolian Geospatial Association. <br />
-              Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a></p>
-            
             </div>
         </div>
     );

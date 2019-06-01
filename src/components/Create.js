@@ -156,27 +156,13 @@ class Create extends Component {
     
     return (
       <div class="container">
-        <div class="panel panel-default">
+        <div class="panel panel-default" >
           {this.state.user ?
-            <button className="btn btn-default btn-xs" onClick={this.logout}>Logout</button>              
+            <button className="btn btn-primary btn-sm" onClick={this.logout}>Logout</button>              
             :
-            <button className="btn btn-default btn-xs" onClick={this.login}>Log In</button>              
-          } 
-          <div class="panel-heading">
-            <div className="flex-row">
-              <div className="flex-panel">
-                <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
-              </div>
-              <div className="flex-large">
-                <h3 class="panel-title">
-                  CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES <br/><br/>
-                </h3>
-              </div>
-            </div>
-          </div>
-
+            <button className="btn btn-primary btn-sm" onClick={this.login}>Log In</button>              
+          }
           <div class="panel-body">
-            <h4><Link to="/" class="btn btn-primary">Home</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="title">Title:</label>
@@ -194,11 +180,11 @@ class Create extends Component {
                 <label for="lang">Language:</label>
                 <select class="form-control" name="lang" value={lang} onChange={this.onChange} >
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="english">English</option>
-                  <option value="spanish">Spanish</option>
-                  <option value="portuguese">Portuguese</option>
-                  <option value="french">French</option>
-                  <option value="other">Other</option>
+                  <option value="English">English</option>
+                  <option value="Spanish">Spanish</option>
+                  <option value="Portuguese">Portuguese</option>
+                  <option value="French">French</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div class="form-group">
@@ -217,11 +203,11 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="semantic_density" value={semantic_density} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="very low">very low</option>
-                  <option value="low">low</option>
-                  <option value="medium">medium</option>
-                  <option value="high">high</option>
-                  <option value="very high">very high</option>
+                  <option value="Very low">Very low</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                  <option value="Very high">Very high</option>
                 </select>
               </div>
               <div class="form-group">
@@ -236,21 +222,21 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="resource_type" value={resource_type} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="exercise">exercise</option>
-                  <option value="simulation">simulation</option>
-                  <option value="questionnaire">questionnaire</option>
-                  <option value="diagram">diagram</option>
-                  <option value="figure">figure</option>
-                  <option value="graph">graph</option>
-                  <option value="index">index</option>
-                  <option value="slide">slide</option>
-                  <option value="table">table</option>
-                  <option value="narrative text">narrative text</option>
-                  <option value="exam">exam</option>
-                  <option value="experiment">experiment</option>
-                  <option value="problem statement">problem statement</option>
-                  <option value="self assessment">self assessment</option>
-                  <option value="lecture">lecture</option>
+                  <option value="Diagram">Diagram</option>
+                  <option value="Exam">Exam</option>
+                  <option value="Exercise">Exercise</option>
+                  <option value="Experiment">Experiment</option>
+                  <option value="Figure">Figure</option>
+                  <option value="Graph">Graph</option>
+                  <option value="Index">Index</option>
+                  <option value="Lecture">Lecture</option>
+                  <option value="Narrative text">Narrative text</option>
+                  <option value="Problem statement">Problem statement</option>
+                  <option value="Questionnaire">Questionnaire</option>
+                  <option value="Self assessment">Self assessment</option>
+                  <option value="Simulation">Simulation</option>
+                  <option value="Slide">Slide</option>
+                  <option value="Table">Table</option>
                 </select>
               </div>
               <div class="form-group">
@@ -263,9 +249,9 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="interactivity_type" value={interactivity_type} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="active">active</option>
-                  <option value="expositive">expositive</option>
-                  <option value="mixed">mixed</option>
+                  <option value="Active">Active</option>
+                  <option value="Expositive">Expositive</option>
+                  <option value="Mixed">Mixed</option>
                 </select>
               </div>
               <div class="form-group">
@@ -276,11 +262,11 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="interactivity_level" value={interactivity_level} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="very low">very low</option>
-                  <option value="low">low</option>
-                  <option value="medium">medium</option>
-                  <option value="high">high</option>
-                  <option value="very high">very high</option>
+                  <option value="Very low">Very low</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                  <option value="Very high">Very high</option>
                 </select>
               </div>
               <div class="form-group">
@@ -291,10 +277,10 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="context" value={context} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="school">school</option>
-                  <option value="higher education">higher education</option>
-                  <option value="training">training</option>
-                  <option value="other">other</option>
+                  <option value="School">School</option>
+                  <option value="Higher Education">Higher Education</option>
+                  <option value="Training">Training</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div class="form-group">
@@ -305,10 +291,10 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="end_user" value={end_user} onChange={this.onChange} placeholder="Intended end user">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="teacher">teacher</option>
-                  <option value="author">author</option>
-                  <option value="learner">learner</option>
-                  <option value="manager">manager</option>
+                  <option value="Teacher">Teacher</option>
+                  <option value="Author">Author</option>
+                  <option value="Learner">Learner</option>
+                  <option value="Manager">Manager</option>
                 </select>
               </div>
               <div class="form-group">
@@ -319,19 +305,19 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="difficulty" value={difficulty} onChange={this.onChange} placeholder="Intended end user">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="very easy">very easy</option>
-                  <option value="easy">easy</option>
-                  <option value="medium">medium</option>
-                  <option value="difficult">difficult</option>
-                  <option value="very difficult">very difficult</option>
+                  <option value="Very easy">Very easy</option>
+                  <option value="Easy">Easy</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Difficult">Difficult</option>
+                  <option value="Very difficult">Very difficult</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="copyright">Copyright:</label>
                 <select class="form-control" name="copyright" value={copyright} onChange={this.onChange} placeholder="Copyright">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="no">no</option>
-                  <option value="yes">yes</option>
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
                 </select>
               </div>
               <div class="form-group">
@@ -349,12 +335,6 @@ class Create extends Component {
               } 
             </form>
           </div>
-        </div>
-        <br />
-        <div class="footnote">
-          <p>Funded by a 2018 <a href="https://www.isprs.org/society/si/default.aspx" rel="noopener noreferrer" target="_blank">ISPRS Scientific Initiatives</a> grant awarded to the ISPRS WG IV/9, ISPRS WG IV/6, ICA Commission on SDIs and Standards, and the Mongolian Geospatial Association. <br />
-          Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a></p>
-        
         </div>
       </div>
     );

@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import firebase, { auth, provider } from '../Firebase';
 import '../App.css';
-import logo from '../animated_logo0_small.gif';
 import help from './help.png';
 
 
@@ -86,26 +85,11 @@ class Show extends Component {
       <div className="container">
         <div className="panel panel-default">
           {this.state.user ?
-            <button className="btn btn-default btn-xs" onClick={this.logout}>Logout</button>
+            <button className="btn btn-primary btn-sm" onClick={this.logout}>Logout</button>              
             :
-            <button className="btn btn-default btn-xs" onClick={this.login}>Log In</button>
-          }
-          <div className="panel-heading">
-            <div className="flex-row">
-              <div className="flex-panel">
-                <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
-              </div>
-              <div className="flex-large">
-                <h3 className="panel-title">
-                  CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES
-                  <br />
-                  <br />
-                </h3>
-              </div>
-            </div>
-          </div>
-
-          <div className="panel-body">
+            <button className="btn btn-primary btn-sm" onClick={this.login}>Log In</button>              
+          } 
+          <div className="panel-body" style={{paddingTop: "10px"}}>
             <br />
             <h4>{this.state.resource.title}</h4>
             <br />
@@ -218,15 +202,9 @@ class Show extends Component {
                 <td><a href={this.state.resource.url} rel="noopener noreferrer" target="_blank">{this.state.resource.url}</a></td>
               </tr>
             </table>
-            <Link to={`/edit/${this.state.key}`} class="btn btn-success">Edit</Link>
+            <Link to={`/edit/${this.state.key}`} class="btn btn-success btn-sm">Edit</Link>
             {/* <button type="button" onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button> */}
           </div>
-        </div>
-        <br />
-        <div className="footnote">
-          <p>Funded by a 2018 <a href="https://www.isprs.org/society/si/default.aspx" rel="noopener noreferrer" target="_blank">ISPRS Scientific Initiatives</a> grant awarded to the ISPRS WG IV/9, ISPRS WG IV/6, ICA Commission on SDIs and Standards, and the Mongolian Geospatial Association. <br />
-          Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a>
-          </p>
         </div>
       </div>
     );

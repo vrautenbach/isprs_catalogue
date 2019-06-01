@@ -16,11 +16,11 @@
 
 .flex-small,
 .flex-large {
-  flex-basis: 83%;
+  flex-basis: 85%;
   margin-bottom: 1rem; }
 
 .flex-panel{
-  flex-basis: 17%;
+  flex-basis: 15%;
   margin-bottom: 1rem; }
 
 /* Small screen breakpoint */

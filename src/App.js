@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 import firebase, { auth, provider } from './Firebase';
-import logo from './animated_logo0_small.gif';
 
 class App extends Component {
   constructor(props) {
@@ -20,13 +19,13 @@ class App extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  onChange = (e) => {
+  onChange=(e) => {
     const state = this.state
     state[e.target.name] = e.target.value;
     this.setState(state);
   }
 
-  logout() {
+  logout=()=> {
     auth.signOut()
       .then(() => {
         this.setState({
@@ -98,33 +97,18 @@ class App extends Component {
     //Build the list
     return (
       <div class="container">
-        <div class="panel panel-default">
+        <div class="panel panel-default" >
           {this.state.user ?
-            <button className="btn btn-default btn-xs" onClick={this.logout}>Logout</button>              
+            <button className="btn btn-primary btn-sm" onClick={this.logout}>Logout</button>              
             :
-            <button className="btn btn-default btn-xs" onClick={this.login}>Log In</button>              
+            <button className="btn btn-primary btn-sm" onClick={this.login}>Log In</button>              
           } 
-          <div class="panel-heading">
-            <div className="flex-row">
-              <div className="flex-panel">
-                <Link to="/"><img src={logo} alt="ISPRS Logo" /></Link>
-              </div>
-              <div className="flex-large">
-                <h3 class="panel-title">
-                  CATALOGUE FOR GEOSPATIAL EDUCATIONAL RESOURCES <br/><br/>
-                </h3>
-              </div>
-            </div>
-          </div>
-
           <div class="panel-body">
             <h4>
-              {this.state.user ?
-                <Link to="/create" className="btn btn-primary" >Add Resource</Link>            
-                  :
-                <button className="btn btn-danger" onClick={this.login}>Log In</button>              
-              } 
-              <Link to="/search" className="btn btn-primary" >Advance search</Link>
+              {this.state.user &&
+                <Link to="/create" className="btn btn-primary btn-sm" >Add Resource</Link>      
+              }
+              <Link to="/search" className="btn btn-primary btn-sm" >Advance search</Link>
             </h4>
             <br></br>
             <div class="input-group">
@@ -160,11 +144,6 @@ class App extends Component {
           </div>
         </div>
         <br />
-        <div class="footnote">
-          <p>Funded by a 2018 <a href="https://www.isprs.org/society/si/default.aspx" rel="noopener noreferrer" target="_blank">ISPRS Scientific Initiatives</a> grant awarded to the ISPRS WG IV/9, ISPRS WG IV/6, ICA Commission on SDIs and Standards, and the Mongolian Geospatial Association. <br />
-          Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a></p>
-        
-        </div>
       </div>
     );
   }

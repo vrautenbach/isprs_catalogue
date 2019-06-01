@@ -12,3 +12,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.footnote {
+  text-align: center;
+  font-size: 12px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 50px;            /* Footer height */
+}
+
+.top {
+  position: relative;
+  height: 160px;        
+  display: flex;
+  padding-bottom: 2.5rem;
+  max-width: 1140px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.titlediv {
+  padding-left: 40px;
+  padding-right: 1rem; 
+  padding-top: 60px;
+  flex-basis: 80%;
+  margin-bottom: 1rem;
+}
+
+.imagediv {
+  padding-left: 40px;
+  flex-basis: 20%;
+  margin-bottom: 1rem; 
+}
