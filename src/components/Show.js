@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
@@ -5,9 +7,12 @@
 /* eslint-disable react/jsx-indent */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 import firebase, { auth, provider } from '../Firebase';
 import '../App.css';
 import logo from '../animated_logo0_small.gif';
+import help from './help.png';
+
 
 class Show extends Component {
   constructor(props) {
@@ -138,7 +143,11 @@ class Show extends Component {
                 <td>{this.state.resource.keywords}</td>
               </tr>
               <tr>
-                <th>Semantic density:</th>
+                <th>Semantic density:<a data-tip data-for="semantic_density-tooltip"> <img src={help} alt="Help" /></a>
+                <ReactTooltip id="semantic_density-tooltip" place="right" type="dark" effect="solid">
+                  <span>The degree of conciseness (cutting out of unnecessary words while conveying an idea) of a learning object. This may be estimated in terms of its size, length of reading or in the case of media – the duration.</span>
+                </ReactTooltip>
+                </th>
                 <td>{this.state.resource.semantic_density}</td>
               </tr>
               <tr>
@@ -146,27 +155,54 @@ class Show extends Component {
                 <td>{this.state.resource.duration}</td>
               </tr>
               <tr>
-                <th>Learning resource type:</th>
+                <th>Learning resource type:<a data-tip data-for="resource_type-tooltip"> <img src={help} alt="Help" /></a>
+                <ReactTooltip id="resource_type-tooltip" place="right" type="dark" effect="solid">
+                  <span>Specific kind of learning object. Please select the most dominant kind.</span>
+                </ReactTooltip>
+                </th>
                 <td>{this.state.resource.resource_type}</td>
               </tr>
               <tr>
-                <th>Interactivity type:</th>
+                <th>Interactivity type:<a data-tip data-for="interactivity_type-tooltip"> <img src={help} alt="Help" /></a>
+                <ReactTooltip id="interactivity_type-tooltip" place="right" type="dark" effect="solid">
+                  <span><p>“Active” learning (e.g. learning by doing) is supported by the content that directly induces productive action by a learner. The active learning object prompts the learner for meaningful input or some other kind of productive action or decision. </p>
+                  <p>“Expositive” learning (e.g. passive learning) occurs when the learner’s job mainly consists of absorbing the content exposed to them, generally through text, images or sound. </p>
+                  <p>“Mixed” learning is when a learning object blends the active and expositive interactivity types. </p>
+                  </span>
+                </ReactTooltip>
+                </th>
                 <td>{this.state.resource.interactivity_type}</td>
               </tr>
               <tr>
-                <th>Interactivity level:</th>
+                <th>Interactivity level:<a data-tip data-for="interactivity_level-tooltip"> <img src={help} alt="Help" /></a>
+                <ReactTooltip id="interactivity_level-tooltip" place="right" type="dark" effect="solid">
+                  <span>This refers to the degree to which the learner can influence the aspect or behavior of the resource.</span>
+                </ReactTooltip>
+                </th>
                 <td>{this.state.resource.interactivity_level}</td>
               </tr>
               <tr>
-                <th>Context:</th>
+                <th>Context:<a data-tip data-for="context-tooltip"> <img src={help} alt="Help" /></a>
+                <ReactTooltip id="context-tooltip" place="right" type="dark" effect="solid">
+                  <span>The principal or main environment within which the resource is intended to take place.</span>
+                </ReactTooltip>
+                </th>
                 <td>{this.state.resource.context}</td>
               </tr>
               <tr>
-                <th>Intended end user:</th>
+                <th>Intended end user:<a data-tip data-for="end_user-tooltip"> <img src={help} alt="Help" /></a>
+                <ReactTooltip id="end_user-tooltip" place="right" type="dark" effect="solid">
+                  <span>Principal users for which this resource was designed, most dominant first.</span>
+                </ReactTooltip>
+                </th>
                 <td>{this.state.resource.end_user}</td>
               </tr>
               <tr>
-                <th>Difficulty level:</th>
+                <th>Difficulty level:<a data-tip data-for="difficulty-tooltip"> <img src={help} alt="Help" /></a>
+                <ReactTooltip id="difficulty-tooltip" place="right" type="dark" effect="solid">
+                  <span>How hard it is to work with or through the resource for the typical intended target audience.</span>
+                </ReactTooltip>
+                </th>
                 <td>{this.state.resource.difficulty}</td>
               </tr>
               <tr>
@@ -182,18 +218,15 @@ class Show extends Component {
                 <td><a href={this.state.resource.url} rel="noopener noreferrer" target="_blank">{this.state.resource.url}</a></td>
               </tr>
             </table>
-            <br />
-
             <Link to={`/edit/${this.state.key}`} class="btn btn-success">Edit</Link>
-            &nbsp;
             {/* <button type="button" onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button> */}
           </div>
         </div>
         <br />
-        <div class="footnote">
-          <p>Funded by the 2018 ISPRS Scientific Initiatives. <br />
-          Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a></p>
-        
+        <div className="footnote">
+          <p>Funded by a 2018 <a href="https://www.isprs.org/society/si/default.aspx" rel="noopener noreferrer" target="_blank">ISPRS Scientific Initiatives</a> grant awarded to the ISPRS WG IV/9, ISPRS WG IV/6, ICA Commission on SDIs and Standards, and the Mongolian Geospatial Association. <br />
+          Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a>
+          </p>
         </div>
       </div>
     );

@@ -3,6 +3,8 @@ import firebase, { auth, provider } from '../Firebase';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import logo from '../animated_logo0_small.gif';
+import help from './help.png';
+import ReactTooltip from 'react-tooltip'
 
 class Edit extends Component {
 
@@ -230,6 +232,10 @@ class Edit extends Component {
                   </div>
                   <div class="form-group">
                     <label for="semantic_density">Semantic density:</label>
+                    <a data-tip data-for="semantic_density-tooltip"> <img src={help} alt="Help" /></a>
+                    <ReactTooltip id="semantic_density-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                      <span>The degree of conciseness (cutting out of unnecessary words while conveying an idea) of a learning object. This may be estimated in terms of its size, length of reading or in the case of media – the duration.</span>
+                    </ReactTooltip>
                     <select class="form-control" name="semantic_density" value={this.state.semantic_density} onChange={this.onChange} placeholder={this.state.semantic_density}>
                       <option value="very low">very low</option>
                       <option value="low">low</option>
@@ -244,6 +250,10 @@ class Edit extends Component {
                   </div>
                   <div class="form-group">
                     <label for="resource_type">Resource type:</label>
+                    <a data-tip data-for="resource_type-tooltip"> <img src={help} alt="Help" /></a>
+                    <ReactTooltip id="resource_type-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                      <span>Specific kind of learning object. Please select the most dominant kind.</span>
+                    </ReactTooltip>
                     <select class="form-control" name="resource_type" value={this.state.resource_type} onChange={this.onChange} placeholder="">
                       <option value="exercise">exercise</option>
                       <option value="simulation">simulation</option>
@@ -264,6 +274,12 @@ class Edit extends Component {
                   </div>
                   <div class="form-group">
                     <label for="interactivity_type">Interactivity type:</label>
+                    <a data-tip data-for="interactivity_type-tooltip"> <img src={help} alt="Help" /></a>
+                    <ReactTooltip id="interactivity_type-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                      <span><p>“Active” learning (e.g. learning by doing) is supported by the content that directly induces productive action by a learner. The active learning object prompts the learner for meaningful input or some other kind of productive action or decision. </p>
+                      <p>“Expositive” learning (e.g. passive learning) occurs when the learner’s job mainly consists of absorbing the content exposed to them, generally through text, images or sound. </p>
+                      <p>“Mixed” learning is when a learning object blends the active and expositive interactivity types. </p></span>
+                    </ReactTooltip>
                     <select class="form-control" name="interactivity_type" value={this.state.interactivity_type} onChange={this.onChange} placeholder="">
                       <option value="active">active</option>
                       <option value="expositive">expositive</option>
@@ -272,6 +288,10 @@ class Edit extends Component {
                   </div>
                   <div class="form-group">
                     <label for="interactivity_level">End user:</label>
+                    <a data-tip data-for="interactivity_level-tooltip"> <img src={help} alt="Help" /></a>
+                    <ReactTooltip id="interactivity_level-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                      <span>This refers to the degree to which the learner can influence the aspect or behavior of the resource.</span>
+                    </ReactTooltip>
                     <select class="form-control" name="interactivity_level" value={this.state.interactivity_level} onChange={this.onChange} placeholder="">
                       <option value="very low">very low</option>
                       <option value="low">low</option>
@@ -282,6 +302,10 @@ class Edit extends Component {
                   </div>
                   <div class="form-group">
                     <label for="context">Context:</label>
+                    <a data-tip data-for="context-tooltip"> <img src={help} alt="Help" /></a>
+                    <ReactTooltip id="context-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                      <span>The principal or main environment within which the resource is intended to take place.</span>
+                    </ReactTooltip>
                     <select class="form-control" name="context" value={this.state.context} onChange={this.onChange} placeholder="">
                       <option value="school">school</option>
                       <option value="higher education">higher education</option>
@@ -291,6 +315,10 @@ class Edit extends Component {
                   </div>
                   <div class="form-group">
                     <label for="end_user">End user:</label>
+                    <a data-tip data-for="end_user-tooltip"> <img src={help} alt="Help" /></a>
+                    <ReactTooltip id="end_user-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                      <span>Principal users for which this resource was designed, most dominant first.</span>
+                    </ReactTooltip>
                     <select class="form-control" name="end_user" value={this.state.end_user} onChange={this.onChange} placeholder="Intended end user">
                       <option value="teacher">teacher</option>
                       <option value="author">author</option>
@@ -300,6 +328,10 @@ class Edit extends Component {
                   </div>
                   <div class="form-group">
                     <label for="difficulty">Difficulty:</label>
+                    <a data-tip data-for="difficulty-tooltip"> <img src={help} alt="Help" /></a>
+                    <ReactTooltip id="difficulty-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
+                      <span>How hard it is to work with or through the resource for the typical intended target audience.</span>
+                    </ReactTooltip>
                     <select class="form-control" name="difficulty" value={this.state.difficulty} onChange={this.onChange} placeholder="Intended end user">
                       <option value="very easy">very easy</option>
                       <option value="easy">easy</option>
@@ -337,7 +369,7 @@ class Edit extends Component {
         </div>
         <br />
         <div class="footnote">
-          <p>Funded by the 2018 ISPRS Scientific Initiatives. <br />
+          <p>Funded by a 2018 <a href="https://www.isprs.org/society/si/default.aspx" rel="noopener noreferrer" target="_blank">ISPRS Scientific Initiatives</a> grant awarded to the ISPRS WG IV/9, ISPRS WG IV/6, ICA Commission on SDIs and Standards, and the Mongolian Geospatial Association. <br />
           Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a></p>
         
         </div>

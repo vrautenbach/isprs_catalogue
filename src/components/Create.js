@@ -352,7 +352,7 @@ class Create extends Component {
         </div>
         <br />
         <div class="footnote">
-          <p>Funded by the 2018 ISPRS Scientific Initiatives. <br />
+          <p>Funded by a 2018 <a href="https://www.isprs.org/society/si/default.aspx" rel="noopener noreferrer" target="_blank">ISPRS Scientific Initiatives</a> grant awarded to the ISPRS WG IV/9, ISPRS WG IV/6, ICA Commission on SDIs and Standards, and the Mongolian Geospatial Association. <br />
           Managed by the University of Pretoria. For any queries, email <a href="mailto:victoria.rautenbach@up.ac.za">victoria.rautenbach@up.ac.za</a></p>
         
         </div>

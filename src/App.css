@@ -99,4 +99,14 @@ form label {
 .footnote {
   text-align: center;
   font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;            /* Footer height */
+}
+
+.container {
+  padding-bottom: 2.5rem;    /* Footer height */
+  position: relative;
+  min-height: 100vh;
 }
