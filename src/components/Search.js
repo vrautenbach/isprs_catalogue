@@ -231,8 +231,8 @@ class App extends Component {
                           />)
                       )}
                 </div>
-                <div className="flex-large">
-                    <div class="panel panel-default" style={{height: '90vh', overflow: 'scroll'}}>
+         
+                    <div class="panel panel-default" style={{height: '90vh',width:'70vw', overflow: 'scroll', marginTop:55,}}>
                         <div class="panel-body">
                           { _resources.length > 0
                           ?  
@@ -273,7 +273,7 @@ class App extends Component {
                             }
                         </div>
                     </div>
-                </div>
+              
             </div>
         </div>
     );
