@@ -232,7 +232,7 @@ class App extends Component {
                       )}
                 </div>
          
-                    <div class="panel panel-default" style={{height: '90vh',width:'70vw', overflow: 'scroll', marginTop:55,}}>
+                    <div class="panel panel-default" style={{height: '90vh', width:'70vw', overflow: 'scroll', marginTop:55,}}>
                         <div class="panel-body">
                           { _resources.length > 0
                           ?  
@@ -242,9 +242,7 @@ class App extends Component {
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Date</th>
-                                <th>Authors</th>
-                                <th>Keywords</th>                                
-                                <th>Duration (hours)</th>
+                                <th>Keywords</th> 
                                 <th>Learning Resource Type</th>
                                 <th>Context</th>
                                 </tr>
@@ -258,9 +256,7 @@ class App extends Component {
                                     <td><Link to={`/show/${resource.key}`}>{resource.title}</Link></td>
                                     <td>{resource.description}</td>
                                     <td>{resource.date}</td>
-                                    <td>{resource.author}</td>
                                     <td>{resource.keywords}</td>
-                                    <td>{resource.duration}</td>
                                     <td>{resource.resource_type}</td>
                                     <td>{resource.context}</td>
                                 </tr>
