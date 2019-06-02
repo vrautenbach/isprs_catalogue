@@ -241,6 +241,7 @@ class Edit extends Component {
                       <span>Specific kind of learning object. Please select the most dominant kind.</span>
                     </ReactTooltip>
                     <select class="form-control" name="resource_type" value={this.state.resource_type} onChange={this.onChange} placeholder="">
+                      <option value="Data">Data</option>
                       <option value="Diagram">Diagram</option>
                       <option value="Exam">Exam</option>
                       <option value="Exercise">Exercise</option>
@@ -249,12 +250,14 @@ class Edit extends Component {
                       <option value="Graph">Graph</option>
                       <option value="Index">Index</option>
                       <option value="Lecture">Lecture</option>
+                      <option value="Model">Model</option>
                       <option value="Narrative text">Narrative text</option>
                       <option value="Problem statement">Problem statement</option>
                       <option value="Questionnaire">Questionnaire</option>
                       <option value="Self assessment">Self assessment</option>
                       <option value="Simulation">Simulation</option>
                       <option value="Slide">Slide</option>
+                      <option value="Software">Software</option>
                       <option value="Table">Table</option>
                     </select>
                   </div>
