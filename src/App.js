@@ -90,6 +90,9 @@ class App extends Component {
         else if (results.keywords.toLowerCase().match(_search)) {
             return results.keywords.toLowerCase().match(_search);
         }
+        else if (results.author.toLowerCase().match(_search)) {
+          return results.author.toLowerCase().match(_search);
+        }
         else return null;
       });
     }

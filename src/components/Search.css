@@ -16,11 +16,11 @@
 
 .flex-small,
 .flex-large {
-  flex-basis: 85%;
+  flex-basis: 83%;
   margin-bottom: 1rem; }
 
 .flex-panel{
-  flex-basis: 15%;
+  flex-basis: 17%;
   margin-bottom: 1rem; }
 
 /* Small screen breakpoint */
@@ -37,7 +37,8 @@
 
 .search-form {
   font-weight: normal;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
+  font-size: 14px;
 }
 
 .h6, h6 {

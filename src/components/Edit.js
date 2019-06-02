@@ -273,7 +273,7 @@ class Edit extends Component {
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="interactivity_level">End user:</label>
+                    <label for="interactivity_level">Interactivity level:</label>
                     <a data-tip data-for="interactivity_level-tooltip"> <img src={help} alt="Help" /></a>
                     <ReactTooltip id="interactivity_level-tooltip" place="right" type="dark" effect="solid" delayHide={300}>
                       <span>This refers to the degree to which the learner can influence the aspect or behavior of the resource.</span>

@@ -23,6 +23,7 @@ class App extends Component {
       user: null,
       contextType:[],
       resourceType:[],
+      endUser: [],
     };
 
     // FireStore auth
@@ -40,7 +41,7 @@ class App extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const resources = [];
     querySnapshot.forEach((doc) => {
-      const { title, description, date, author, keywords, duration, resource_type, context } = doc.data();
+      const { title, description, date, author, keywords, duration, resource_type, context, end_user } = doc.data();
       resources.push({
         key: doc.id,
         doc, // DocumentSnapshot
@@ -51,7 +52,8 @@ class App extends Component {
         keywords,
         duration,
         resource_type,
-        context
+        context,
+        end_user,
       });
     });
     this.setState({
@@ -151,6 +153,20 @@ class App extends Component {
     this.setState({ contextType:filterArray})
   }
 
+  clickSelectedEndUser=(changeEvent)=>{
+    const { name } = changeEvent.target;
+    let filterArray = this.state.endUser;
+    //if in array remove else push
+    if(filterArray.includes(name)){
+      console.log("IN array")
+      filterArray = filterArray.filter(element=>element!== name) 
+    } else{
+      filterArray.push(name)
+    }
+
+    this.setState({ endUser:filterArray})
+  }
+
 
   render() {
    
@@ -158,6 +174,7 @@ class App extends Component {
     let _search = this.state.search.trim().toLowerCase();
     let _resourceType = this.state.resourceType;
     let _contextType = this.state.contextType;
+    let _endUser = this.state.endUser;
 
     if (_search.length > 0) {
       _resources = _resources.filter(function(results) 
@@ -213,6 +230,16 @@ class App extends Component {
       });
     }
 
+    if (_endUser.length > 0) {
+      var enduserStr = _endUser.toString().toLowerCase();
+      _resources = _resources.filter((results)=> 
+      {
+        if (results.end_user.toLowerCase().match(enduserStr)) { 
+          return results.end_user;
+        }
+      });
+    }
+
     return (
         <div className="container">
             <div class="panel-heading">
@@ -221,28 +248,13 @@ class App extends Component {
                 :
                 <button className="btn btn-primary btn-sm" onClick={this.login}>Log In</button>              
               }
-                <div> 
-                    <br/><br/>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for phrases in the title, description and keywords" />
-                    </div>
-                </div> 
+              <div class="input-group">
+                <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for phrases in the title, description and keywords" />
+              </div>
             </div>
             <div className="flex-row">
-                <div className="flex-panel">
-                  <br/>
-                  <br/> 
-                  <h6>Learning resource type:</h6>
-                      {config.resourceType.map(checkbox=>(              
-                      <Checkbox
-                            label={checkbox}
-                            isSelected={this.state.resourceType.includes(checkbox)}
-                            onCheckboxChange={(e)=> this.clickSelectedResourceType(e)}
-                            key={checkbox}
-                          />)
-                      )}
-                      <br/> 
-                      <h6>Context:</h6>
+                <div className="flex-panel" style={{marginTop: '30px'}}>
+                  <h6 style={{fontSize: '14px', marginBottom: '3px'}}>Context:</h6>
                       {config.contextType.map(checkbox=>(              
                       <Checkbox
                             label={checkbox}
@@ -251,45 +263,63 @@ class App extends Component {
                             key={checkbox}
                           />)
                       )}
+                  <h6 style={{fontSize: '14px', marginBottom: '3px', marginTop: '20px'}}>Learning resource type:</h6>
+                      {config.resourceType.map(checkbox=>(              
+                      <Checkbox
+                            label={checkbox}
+                            isSelected={this.state.resourceType.includes(checkbox)}
+                            onCheckboxChange={(e)=> this.clickSelectedResourceType(e)}
+                            key={checkbox}
+                          />)
+                      )}
+                  <h6 style={{fontSize: '14px', marginBottom: '3px', marginTop: '20px'}}>End user:</h6>
+                      {config.endUser.map(checkbox=>(              
+                      <Checkbox
+                            label={checkbox}
+                            isSelected={this.state.endUser.includes(checkbox)}
+                            onCheckboxChange={(e)=> this.clickSelectedEndUser(e)}
+                            key={checkbox}
+                          />)
+                      )} 
                 </div>
-                    <div class="panel panel-default" style={{height: '90vh', width:'70vw', overflow: 'scroll', marginTop:55,}}>
-                          { _resources.length > 0
-                          ?  
-                            <div class="panel-body">
-                              <h6 style={{textAlign: 'right'}}>{_resources.length} resources</h6>
-                              <table className="table table-stripe">
-                              <thead>
-                                  <tr>
-                                  <th>Title</th>
-                                  <th>Description</th>
-                                  <th>Date</th>
-                                  <th>Keywords</th> 
-                                  <th>Learning Resource Type</th>
-                                  <th>Context</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  {_resources.map(resource =>{
-                                  // console.log(resource)
-                                  return(  
-                                  <>
-                                  <tr>
-                                      <td><Link to={`/show/${resource.key}`}>{resource.title}</Link></td>
-                                      <td>{resource.description}</td>
-                                      <td>{resource.date}</td>
-                                      <td>{resource.keywords}</td>
-                                      <td>{resource.resource_type}</td>
-                                      <td>{resource.context}</td>
-                                  </tr>
-                                  </>
-                                  )})}
-                              </tbody>
-                              </table>
-                            </div>
-                            :
-                            <h6 style={{paddingTop: '20px', textAlign: 'center'}}>No resources found.</h6>
-                            }
-                    </div>
+                <div class="panel panel-default" style={{height: '90vh', width:'70vw', overflow: 'scroll', marginTop: '30px',}}>
+                      { _resources.length > 0
+                      ?  
+                        <div class="panel-body">
+                          <h6 style={{textAlign: 'right'}}>{_resources.length} resources</h6>
+                          <table className="table table-stripe">
+                          <thead>
+                              <tr>
+                              <th>Title</th>
+                              <th>Description</th>
+                              <th>Date</th>
+                              <th>Keywords</th> 
+                              <th>Learning Resource Type</th>
+                              <th>Context</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {_resources.map(resource =>{
+                              // console.log(resource)
+                              return(  
+                              <>
+                              <tr>
+                                  <td><Link to={`/show/${resource.key}`}>{resource.title}</Link></td>
+                                  <td>{resource.description}</td>
+                                  <td>{resource.date}</td>
+                                  <td>{resource.keywords}</td>
+                                  <td>{resource.resource_type}</td>
+                                  <td>{resource.context}</td>
+                              </tr>
+                              </>
+                              )})}
+                          </tbody>
+                          </table>
+                        </div>
+                        :
+                        <h6 style={{paddingTop: '20px', textAlign: 'center'}}>No resources found.</h6>
+                        }
+                </div>
             </div>
         </div>
     );
