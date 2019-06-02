@@ -188,11 +188,11 @@ class Edit extends Component {
                 <form onSubmit={this.onSubmit}>
                   <div class="form-group">
                     <label for="title">Title:</label>
-                    <input type="text" class="form-control" name="title" value={this.state.title} onChange={this.onChange} />
+                    <input type="text" class="form-control" name="title" value={this.state.title} onChange={this.onChange} required/>
                   </div>
                   <div class="form-group">
                     <label for="description">Description:</label>
-                    <input type="text" class="form-control" name="description" value={this.state.description} onChange={this.onChange} />
+                    <input type="text" class="form-control" name="description" value={this.state.description} onChange={this.onChange} required/>
                   </div>
                   <div class="form-group">
                     <label for="date">Date:</label>
@@ -339,7 +339,7 @@ class Edit extends Component {
                   </div>
                   <div class="form-group">
                     <label for="url">URL:</label>
-                    <input type="text" class="form-control" name="url" value={this.state.url} onChange={this.onChange} placeholder="Link to the resource" />
+                    <input type="text" class="form-control" name="url" value={this.state.url} onChange={this.onChange} placeholder="Link to the resource" required/>
                   </div>
                   <button type="submit" class="btn btn-success btn-sm">Submit</button>
                 </form>

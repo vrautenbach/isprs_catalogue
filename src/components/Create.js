@@ -100,6 +100,11 @@ class Create extends Component {
 
     const { title, description, date, lang, author, keywords, semantic_density, duration, resource_type, interactivity_type, interactivity_level, context, end_user, difficulty, copyright, cost, url, currdate, displayName, email } = this.state;
 
+    if ( (title.length < 2) && (description.length < 2) && (url.length < 2) ){
+      alert('Please add a the title, description and link to the resource');
+      return
+    }
+
     this.ref.add({
       title, 
       description, 
@@ -162,15 +167,15 @@ class Create extends Component {
             :
             <button className="btn btn-primary btn-sm" onClick={this.login}>Log In</button>              
           }
-          <div class="panel-body">
+          <div class="panel-body" style={{paddingTop: '30px'}}>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" class="form-control" name="title" value={title} onChange={this.onChange} placeholder="Title given to the resource" />
+                <input type="text" class="form-control" name="title" value={title} onChange={this.onChange} placeholder="Title given to the resource (Required)" required />
               </div>
               <div class="form-group">
                 <label for="description">Description:</label>
-                <textArea class="form-control" name="description" onChange={this.onChange} placeholder="Textual description of the content of the resource" cols="80" rows="3">{description}</textArea>
+                <textArea class="form-control" name="description" onChange={this.onChange} placeholder="Textual description of the content of the resource (Required)" cols="80" rows="3" required>{description}</textArea>
               </div>
               <div class="form-group">
                 <label for="date">Date:</label>
@@ -326,7 +331,7 @@ class Create extends Component {
               </div>
               <div class="form-group">
                 <label for="url">URL:</label>
-                <input type="text" class="form-control" name="url" value={url} onChange={this.onChange} placeholder="Link to the resource" />
+                <input type="text" class="form-control" name="url" value={url} onChange={this.onChange} placeholder="Link to the resource (Required)" required/>
               </div>
               {this.state.user ?
                 <button type="submit" class="btn btn-success">Submit</button>               

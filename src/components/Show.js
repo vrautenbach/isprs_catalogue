@@ -203,7 +203,7 @@ class Show extends Component {
               </tr>
             </table>
             <Link to={`/edit/${this.state.key}`} class="btn btn-success btn-sm">Edit</Link>
-            {/* <button type="button" onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button> */}
+            <button type="button" onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button>
           </div>
         </div>
       </div>
