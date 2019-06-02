@@ -115,6 +115,7 @@ class App extends Component {
               <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Quick search" />
             </div>
             <br></br>
+            <h6 style={{textAlign: 'right'}}>{_resources.length} resources</h6>
             <table className="table table-stripe">
               <thead>
                 <tr>

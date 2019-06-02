@@ -177,7 +177,7 @@ class Edit extends Component {
   render() {
     return (
       <div class="container">
-        <div class="panel panel-default" >
+        <div class="panel panel-default">
           {this.state.user ?
             <button className="btn btn-primary btn-sm" onClick={this.logout}>Logout</button>              
             :
@@ -345,10 +345,8 @@ class Edit extends Component {
                 </form>
             :
               <div className='wrapper'>
-                <br />
-                <br />
-                <p>You must be logged in to edit any resources.</p>
-                <button className="btn btn-link" onClick={this.login}>Click here to Log In</button>    
+                <p style={{textAlign: 'center', paddingTop: '100px'}}>You must be logged in to edit any resources.</p>
+                {/* <button className="btn btn-link" onClick={this.login}>Click here to Log In</button> */}
               </div>
             }
           </div>

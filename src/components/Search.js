@@ -156,7 +156,8 @@ class App extends Component {
    
     let _resources = this.state.resources;
     let _search = this.state.search.trim().toLowerCase();
-    let _checked = this.state.checked;
+    let _resourceType = this.state.resourceType;
+    let _contextType = this.state.contextType;
 
     if (_search.length > 0) {
       _resources = _resources.filter(function(results) 
@@ -174,19 +175,39 @@ class App extends Component {
       });
     }
 
-    if (this.state.resourceType.length > 0) {
+    /* if (this.state.resourceType.length > 0) {
       _resources = _resources.filter((results)=> 
       {
         if (this.state.resourceType.includes(results.resource_type)) { 
           return results.resource_type;
         }
       });
-    }
-
+    } 
+    
     if (this.state.contextType.length > 0) {
       _resources = _resources.filter((results)=> 
       {
         if (this.state.contextType.includes(results.context)) { 
+          return results.context;
+        }
+      });
+    } */
+
+    if (_resourceType.length > 0) {
+      var resourceStr = _resourceType.toString().toLowerCase();
+      _resources = _resources.filter((results)=> 
+      {
+        if (results.resource_type.toLowerCase().match(resourceStr)) { 
+          return results.resource_type;
+        }
+      });
+    }
+
+    if (_contextType.length > 0) {
+      var contextStr = _contextType.toString().toLowerCase();
+      _resources = _resources.filter((results)=> 
+      {
+        if (results.context.toLowerCase().match(contextStr)) { 
           return results.context;
         }
       });
@@ -231,45 +252,44 @@ class App extends Component {
                           />)
                       )}
                 </div>
-         
                     <div class="panel panel-default" style={{height: '90vh', width:'70vw', overflow: 'scroll', marginTop:55,}}>
-                        <div class="panel-body">
                           { _resources.length > 0
                           ?  
-                            <table className="table table-stripe">
-                            <thead>
-                                <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Date</th>
-                                <th>Keywords</th> 
-                                <th>Learning Resource Type</th>
-                                <th>Context</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {_resources.map(resource =>{
-                                // console.log(resource)
-                                return(  
-                                <>
-                                <tr>
-                                    <td><Link to={`/show/${resource.key}`}>{resource.title}</Link></td>
-                                    <td>{resource.description}</td>
-                                    <td>{resource.date}</td>
-                                    <td>{resource.keywords}</td>
-                                    <td>{resource.resource_type}</td>
-                                    <td>{resource.context}</td>
-                                </tr>
-                                </>
-                                )})}
-                            </tbody>
-                            </table>
+                            <div class="panel-body">
+                              <h6 style={{textAlign: 'right'}}>{_resources.length} resources</h6>
+                              <table className="table table-stripe">
+                              <thead>
+                                  <tr>
+                                  <th>Title</th>
+                                  <th>Description</th>
+                                  <th>Date</th>
+                                  <th>Keywords</th> 
+                                  <th>Learning Resource Type</th>
+                                  <th>Context</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  {_resources.map(resource =>{
+                                  // console.log(resource)
+                                  return(  
+                                  <>
+                                  <tr>
+                                      <td><Link to={`/show/${resource.key}`}>{resource.title}</Link></td>
+                                      <td>{resource.description}</td>
+                                      <td>{resource.date}</td>
+                                      <td>{resource.keywords}</td>
+                                      <td>{resource.resource_type}</td>
+                                      <td>{resource.context}</td>
+                                  </tr>
+                                  </>
+                                  )})}
+                              </tbody>
+                              </table>
+                            </div>
                             :
-                            <h5>No resources found.</h5>
+                            <h6 style={{paddingTop: '20px', textAlign: 'center'}}>No resources found.</h6>
                             }
-                        </div>
                     </div>
-              
             </div>
         </div>
     );
