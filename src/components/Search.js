@@ -14,7 +14,7 @@ import config from '../common/config'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.ref = firebase.firestore().collection('resources');
+    this.ref = firebase.firestore().collection('resources').orderBy('title');
     this.unsubscribe = null;
     this.state = {
       resources: [],

@@ -285,8 +285,8 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="context" value={context} onChange={this.onChange} placeholder="">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="School">School</option>
                   <option value="Higher Education">Higher Education</option>
+                  <option value="School">School</option>
                   <option value="Training">Training</option>
                   <option value="Other">Other</option>
                 </select>
@@ -299,10 +299,10 @@ class Create extends Component {
                 </ReactTooltip>
                 <select class="form-control" name="end_user" value={end_user} onChange={this.onChange} placeholder="Intended end user">
                   <option disabled selected value=""> -- select an option -- </option>
-                  <option value="Teacher">Teacher</option>
                   <option value="Author">Author</option>
                   <option value="Learner">Learner</option>
                   <option value="Manager">Manager</option>
+                  <option value="Teacher">Teacher</option>
                 </select>
               </div>
               <div class="form-group">

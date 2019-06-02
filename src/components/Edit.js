@@ -296,8 +296,8 @@ class Edit extends Component {
                       <span>The principal or main environment within which the resource is intended to take place.</span>
                     </ReactTooltip>
                     <select class="form-control" name="context" value={this.state.context} onChange={this.onChange} placeholder="">
-                      <option value="School">School</option>
                       <option value="Higher Education">Higher Education</option>
+                      <option value="School">School</option>
                       <option value="Training">Training</option>
                       <option value="Other">Other</option>
                     </select>
@@ -309,10 +309,10 @@ class Edit extends Component {
                       <span>Principal users for which this resource was designed, most dominant first.</span>
                     </ReactTooltip>
                     <select class="form-control" name="end_user" value={this.state.end_user} onChange={this.onChange} placeholder="Intended end user">
-                      <option value="Teacher">Teacher</option>
                       <option value="Author">Author</option>
                       <option value="Learner">Learner</option>
                       <option value="Manager">Manager</option>
+                      <option value="Teacher">Teacher</option>
                     </select>
                   </div>
                   <div class="form-group">
