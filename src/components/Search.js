@@ -192,24 +192,6 @@ class App extends Component {
       });
     }
 
-    /* if (this.state.resourceType.length > 0) {
-      _resources = _resources.filter((results)=> 
-      {
-        if (this.state.resourceType.includes(results.resource_type)) { 
-          return results.resource_type;
-        }
-      });
-    } 
-    
-    if (this.state.contextType.length > 0) {
-      _resources = _resources.filter((results)=> 
-      {
-        if (this.state.contextType.includes(results.context)) { 
-          return results.context;
-        }
-      });
-    } */
-
     if (_resourceType.length > 0) {
       var resourceStr = _resourceType.toString().toLowerCase();
       _resources = _resources.filter((results)=> 
