@@ -95,7 +95,7 @@ class Show extends Component {
             <br />
             <table className="table table-stripe">
               <tr>
-                <th>Description:</th>
+                <th style={{width: '240px'}}>Description:</th>
                 <td>{this.state.resource.description}</td>
               </tr>
               <tr>

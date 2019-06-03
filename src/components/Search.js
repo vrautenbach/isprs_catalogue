@@ -192,32 +192,29 @@ class App extends Component {
       });
     }
 
-    if (_resourceType.length > 0) {
-      var resourceStr = _resourceType.toString().toLowerCase();
-      _resources = _resources.filter((results)=> 
-      {
-        if (results.resource_type.toLowerCase().match(resourceStr)) { 
-          return results.resource_type;
-        }
-      });
-    }
-
     if (_contextType.length > 0) {
-      var contextStr = _contextType.toString().toLowerCase();
       _resources = _resources.filter((results)=> 
       {
-        if (results.context.toLowerCase().match(contextStr)) { 
+        if (_contextType.includes(results.context)) { 
           return results.context;
         }
       });
     }
 
     if (_endUser.length > 0) {
-      var enduserStr = _endUser.toString().toLowerCase();
       _resources = _resources.filter((results)=> 
       {
-        if (results.end_user.toLowerCase().match(enduserStr)) { 
+        if (_endUser.includes.apply(results.end_user)) { 
           return results.end_user;
+        }
+      });
+    } 
+
+    if (_resourceType.length > 0) {
+      _resources = _resources.filter((results)=> 
+      {
+        if (_resourceType.includes(results.resource_type)) { 
+          return results.resource_type;
         }
       });
     }
