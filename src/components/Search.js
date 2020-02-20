@@ -232,7 +232,7 @@ class App extends Component {
                 <button className="btn btn-primary btn-sm" onClick={this.login}>Log In</button>              
               }
               <div class="input-group">
-                <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for phrases in the title, description, keywords and date" />
+                <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for phrases in the title, description, keywords or date" />
               </div>
             </div>
             <div className="flex-row">
