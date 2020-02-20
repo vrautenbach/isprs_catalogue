@@ -179,6 +179,7 @@ class App extends Component {
     if (_search.length > 0) {
       _resources = _resources.filter(function(results) 
       {
+        console.log(results.date);
         if (results.description.toLowerCase().match(_search)) {
             return results.description.toLowerCase().match(_search);
         }
@@ -187,6 +188,9 @@ class App extends Component {
         }
         else if (results.keywords.toLowerCase().match(_search)) {
             return results.keywords.toLowerCase().match(_search);
+        }
+        else if (results.date == _search) {
+          return results.date;
         }
         else return null;
       });
@@ -228,7 +232,7 @@ class App extends Component {
                 <button className="btn btn-primary btn-sm" onClick={this.login}>Log In</button>              
               }
               <div class="input-group">
-                <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for phrases in the title, description and keywords" />
+                <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.onChange} placeholder="Search for phrases in the title, description, keywords and date" />
               </div>
             </div>
             <div className="flex-row">

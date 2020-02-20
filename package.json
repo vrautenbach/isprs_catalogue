@@ -37,5 +37,17 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4"
-  }
+  },
+  "description": "This is a custom catalogue created using React JS and Google Firestore to index Geospatial Educational Resources. The project was funded by a 2018 ISPRS Scientific Initiatives grant (https://www.isprs.org/society/si/default.aspx) awarded to the ISPRS WG IV/9, ISPRS WG IV/6, ICA Commission on SDIs and Standards, and the Mongolian Geospatial Association.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vrautenbach/isprs_catalogue.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vrautenbach/isprs_catalogue/issues"
+  },
+  "homepage": "https://github.com/vrautenbach/isprs_catalogue#readme"
 }
