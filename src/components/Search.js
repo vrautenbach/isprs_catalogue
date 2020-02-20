@@ -179,7 +179,6 @@ class App extends Component {
     if (_search.length > 0) {
       _resources = _resources.filter(function(results) 
       {
-        console.log(results.date);
         if (results.description.toLowerCase().match(_search)) {
             return results.description.toLowerCase().match(_search);
         }

@@ -81,17 +81,21 @@ class App extends Component {
     if (_search.length > 0) {
       _resources = _resources.filter(function(results) 
       {
+        //console.log("Search : " + _search + "  value : " +  results.date)
         if (results.description.toLowerCase().match(_search)) {
-            return results.description.toLowerCase().match(_search);
+          return results.description.toLowerCase().match(_search);
         }
         else if (results.title.toLowerCase().match(_search)) {
-            return results.title.toLowerCase().match(_search);
+          return results.title.toLowerCase().match(_search);
         }
         else if (results.keywords.toLowerCase().match(_search)) {
-            return results.keywords.toLowerCase().match(_search);
+          return results.keywords.toLowerCase().match(_search);
         }
         else if (results.author.toLowerCase().match(_search)) {
           return results.author.toLowerCase().match(_search);
+        }
+        else if (results.date == _search) {
+          return results.date;
         }
         else return null;
       });

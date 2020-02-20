@@ -1,7 +1,7 @@
 {
   "name": "isprs-v1",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "braces": "^2.3.2",
     "firebase": "^5.9.1",
@@ -44,10 +44,10 @@
     "type": "git",
     "url": "git+https://github.com/vrautenbach/isprs_catalogue.git"
   },
-  "author": "",
+  "author": "vrautenbach <victoria.rautenbach@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vrautenbach/isprs_catalogue/issues"
   },
-  "homepage": "https://github.com/vrautenbach/isprs_catalogue#readme"
+  "homepage": "."
 }
